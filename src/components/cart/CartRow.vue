@@ -17,11 +17,11 @@
 			<div class="row d-flex justify-content-center align-items-center text-center">
 				<div class="col-4">$ {{product.price}}</div>
 				<div class="col-3 padding-left-0">
-					<input class="form-control" type="number" min="1" disabled="disabled" v-model="product.quantity">
+					<input class="form-control" v-numeric-pos-only v-model="product.quantity" v-on:change="updateQuantityProduct()">
 				</div>
-				<div class="col-3">$ {{product.price * product.quantity}}</div>
+				<div class="col-3">$ {{calculateSubTotal}}</div>
 				<div class="col-2 d-flex justify-content-end">
-					<font-awesome-icon class="pointer" icon="times-circle" v-on:click="remove(product.productId)"/>
+					<font-awesome-icon class="pointer" icon="times-circle" v-on:click="remove()"/>
 				</div>
 			</div>
 		</div>
@@ -50,11 +50,28 @@ export default {
 	name: 'CartRow',
 	props: {
 		product: { type: Object},
-		// removeProduct: { type: Function }
 	},
 	methods: {
-		remove : function(id) {
-			this.$emit('remove-product', id);
+		remove: function() {
+			this.$emit('remove-product', this.product.productId);
+		},
+
+		updateQuantityProduct: function() {
+			let quantity = Number(this.product.quantity)
+			if(!isNaN(quantity)) {
+				this.$emit('update-quantity', this.product.productId, this.product.offerId, this.product.quantity);
+			}
+		}
+	},
+
+	computed: {
+		calculateSubTotal: function() {
+			let quantity = Number(this.product.quantity);
+			if(!isNaN(quantity)) {
+				return this.product.price * quantity
+			} else {
+				return 0;
+			}
 		}
 	}
 }

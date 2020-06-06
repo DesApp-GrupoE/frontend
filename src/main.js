@@ -27,3 +27,14 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
+
+Vue.directive('numeric-pos-only', {
+  bind(el) {
+    el.addEventListener('keyup', () => {
+      let regex = /^[0-9]*$/
+      if (!regex.test(el.value)) {
+        el.value = el.value.slice(0, -1)
+      }
+    })
+  }
+})

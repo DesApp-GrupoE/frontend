@@ -15,13 +15,23 @@
 			</div>
 
 			<CartRow class="row product" v-for="product in products" :key="`product-${product.productId}`" 
-					:product="product" @remove-product="removeProduct"/>
+					:product="product" @remove-product="removeProduct" @update-quantity="updateQuantity"/>
 			
 			<div class="row product footer d-flex justify-content-between">
 				<span class="bold">Total</span>
 				<span>$ {{totalAmount}}</span>
 			</div>
 		</div>
+
+		<b-modal v-model="modalShow" title="Updating Cart" hide-footer>
+			<h3>Please, wait</h3>
+			<b-progress :value="100" variant="primary" :animated="true" class="mt-3 progress-updating"></b-progress>
+		</b-modal>
+
+		<b-modal v-model="modalErrorShow" title="Warning" hide-footer>
+			<h3>An error has occurred. Please try again</h3>
+			<b-button class="btn-modal-ok" variant="primary" block @click="reloadCart">Ok</b-button>
+		</b-modal>
 	</div>
 </template>
 
@@ -39,6 +49,14 @@
 	padding: 15px 0;
 }
 
+.btn-modal-ok {
+	width: 100px;
+	float: right;
+}
+
+.progress-updating {
+	margin-bottom: 1rem;
+}
 </style>
 
 <script>
@@ -53,18 +71,30 @@ export default {
 	},
 	data() {
 		return {
-			products: []
+			products: [],
+			modalShow: false,
+			modalErrorShow: false
 		}
 	},
 	mounted() { 
 		CartService.getShoppingCart()
 		.then(response => {
 			this.products = response.data.cartProducts;
+		})
+		.catch(() => {
+			this.modalErrorShow = true;
 		});
 	},
 	computed: {
 		totalAmount: function() {
-			return this.products.reduce((total, product) => total + (product.price * product.quantity), 0);
+			return this.products.reduce((total, product) => {
+					let quantity = Number(product.quantity);
+					if(!isNaN(quantity)) {
+						return total + (product.price * product.quantity);
+					} else {
+						return 0;
+					}
+				}, 0);
 		}
 	},
 	methods: {
@@ -76,11 +106,33 @@ export default {
 						this.products.splice(this.products.indexOf(product), 1)
 					}
 				})
-				.catch(response => {
-					console.log(response);
+				.catch(() => {
+					this.modalErrorShow = true;
 				})
 		},
 
+		updateQuantity: function(idProduct, idOffer, quantity) {
+			if(quantity && quantity > 0) {
+				this.modalShow = true;
+				if(idProduct && !idOffer) {
+					this.updateProductQuantity(idProduct, quantity);
+				}
+			}
+		},
+
+		updateProductQuantity: function(idProduct, quantity) {
+			CartService.updateProductQuantity(idProduct, quantity)
+				.then(() => {
+					this.modalShow = false;
+				})
+				.catch(() => {
+					this.modalErrorShow = true;
+				})
+		},
+
+		reloadCart: function() {
+			window.location.reload();
+		}
 	}
 }
 </script>

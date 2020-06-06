@@ -47,6 +47,17 @@ class CartService {
                 return axios.delete(`${process.env.VUE_APP_DESAPP_ROOT_API}/cart/${keyCart}/product/${idProduct}`);
             })
     }
+
+    updateProductQuantity(idProduct, quantity) {
+        let json = {
+            id: idProduct,
+            quantity: quantity
+        }
+        return this.getKeyCart()
+            .then(keyCart => {
+                return axios.put(`${process.env.VUE_APP_DESAPP_ROOT_API}/cart/${keyCart}/product`, json);
+            })
+    }
 }
 
 export default new CartService();
