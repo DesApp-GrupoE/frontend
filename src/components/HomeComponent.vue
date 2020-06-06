@@ -3,7 +3,7 @@
     <ProductForm @callback="setProducts"/>
     <ProductList :products="products"/>
     <div v-show="products.length == 0 && findProducts">
-      <h2>Sin resultados</h2>
+      <h2>{{$t("HomeComponent.noResults")}}</h2>
     </div>
   </div>
 </template>

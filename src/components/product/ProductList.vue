@@ -2,14 +2,14 @@
 	<div class="d-flex list-products" v-show="products.length > 0">
 		<div class="card card-product" v-for="product in products" :key="`product-${product.id}`">
 			<div class="card-content">
-				<img :src="product.img" class="card-img-top card-img-product" alt="Product Image"/>
+				<img :src="product.img" class="card-img-top card-img-product" :alt="$t('productList.imgProductAlt')"/>
 			</div>
 			<b-card-text class="text-center">
 				{{product.name}}<br/>
 				$ {{product.price}}
 			</b-card-text>
 			<div class="text-center">
-				<b-button type="button" variant="primary" v-on:click="addToCart(product.id)">Add</b-button>
+				<b-button type="button" variant="primary" v-on:click="addToCart(product.id)">{{$t('productList.add')}}</b-button>
 			</div>
 		</div>
 	</div>

@@ -1,16 +1,16 @@
 <template>
 	<div>
 		<div class="col-md-6 col-12 d-flex align-items-start">
-			<img :src="product.img" class="img-product" alt="Product Image"/>
+			<img :src="product.img" class="img-product" :alt="$t('ShoppingCart.imgProductAlt')"/>
 			{{product.name}}<br/>
 			{{product.brand}}
 		</div>
 		<div class="col-md-6 col-12 product-detail-xs">
 			<div class="row d-block d-md-none">
 				<div class="row bold header-product d-flex justify-content-center text-center">
-					<div class="col-4">Price</div>
-					<div class="col-3 padding-left-0">Quantity</div>
-					<div class="col-3">Subtotal</div>
+					<div class="col-4">{{$t('ShoppingCart.price')}}</div>
+					<div class="col-3 padding-left-0">{{$t('ShoppingCart.quantity')}}</div>
+					<div class="col-3">{{$t('ShoppingCart.subTotal')}}</div>
 					<div class="col-2"></div>
 				</div>
 			</div>

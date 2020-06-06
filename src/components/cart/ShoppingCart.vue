@@ -1,14 +1,14 @@
 <template>
 	<div class="panel-cart">
-		<h2 v-if="products.length < 1">Your shopping cart is empty</h2>
+		<h2 v-if="products.length < 1">{{$t('ShoppingCart.yourCartEmpty')}}</h2>
 		<div class="col-12 products" v-if="products.length > 0">
 			<div class="row bold">
-				<div class="col-md-6 col-12">Your products</div>
+				<div class="col-md-6 col-12">{{$t('ShoppingCart.yourProducts')}}</div>
 				<div class="col-md-6 d-md-block d-none">
 					<div class="row d-flex justify-content-center text-center">
-						<div class="col-4">Price</div>
-						<div class="col-3 padding-left-0">Quantity</div>
-						<div class="col-3">Subtotal</div>
+						<div class="col-4">{{$t('ShoppingCart.price')}}</div>
+						<div class="col-3 padding-left-0">{{$t('ShoppingCart.quantity')}}</div>
+						<div class="col-3">{{$t('ShoppingCart.subTotal')}}</div>
 						<div class="col-2"></div>
 					</div>
 				</div>
@@ -18,18 +18,18 @@
 					:product="product" @remove-product="removeProduct" @update-quantity="updateQuantity"/>
 			
 			<div class="row product footer d-flex justify-content-between">
-				<span class="bold">Total</span>
+				<span class="bold">{{$t('ShoppingCart.total')}}</span>
 				<span>$ {{totalAmount}}</span>
 			</div>
 		</div>
 
-		<b-modal v-model="modalShow" title="Updating Cart" hide-footer>
-			<h3>Please, wait</h3>
+		<b-modal v-model="modalShow" :title="$t('ShoppingCart.modalUpdate.title')" hide-footer>
+			<h4>{{$t('ShoppingCart.modalUpdate.pleaseWait')}}</h4>
 			<b-progress :value="100" variant="primary" :animated="true" class="mt-3 progress-updating"></b-progress>
 		</b-modal>
 
-		<b-modal v-model="modalErrorShow" title="Warning" hide-footer>
-			<h3>An error has occurred. Please try again</h3>
+		<b-modal v-model="modalErrorShow" :title="$t('ShoppingCart.modalError.title')" hide-footer>
+			<h4>{{$t('ShoppingCart.modalError.tryAgain')}}</h4>
 			<b-button class="btn-modal-ok" variant="primary" block @click="reloadCart">Ok</b-button>
 		</b-modal>
 	</div>

@@ -10,12 +10,12 @@
           v-model="form.product"
           type="text"
           required
-          placeholder="Find products"
+          :placeholder="$t('productForm.findProducts')"
         ></b-form-input>
       </b-form-group>
 
       <div class="d-flex justify-content-end">
-        <b-button type="submit" variant="primary">Search</b-button>
+        <b-button type="submit" variant="primary">{{$t("Search")}}</b-button>
       </div>
     </b-form>
   </div>

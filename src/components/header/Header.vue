@@ -10,13 +10,21 @@
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav class="ml-auto">
             <b-nav-item href="#">
-              <router-link to="/cart">Cart <font-awesome-icon icon="shopping-cart"/></router-link>
+              <router-link to="/cart">{{$t("Cart")}} <font-awesome-icon icon="shopping-cart"/></router-link>
             </b-nav-item>
 
-            <b-nav-item-dropdown text="Lang" right>
-              <b-dropdown-item  href="#">EN</b-dropdown-item>
-              <b-dropdown-item href="#">ES</b-dropdown-item>
-            </b-nav-item-dropdown>
+            <b-nav-item-dropdown right>
+              <!--  Language  -->
+              <template slot="button-content">
+                <span>{{$t('Language')}}</span> <img :src="require(`@/assets/images/${$i18n.locale}.svg`)" class="img-flag" alt="Icon Lang"/>
+              </template>
+              <b-dropdown-item href="#" v-for="(lang, i) in langs" :key="`Lang${i}`" 
+                                :value="lang" @click="changeLanguage(lang)">
+                <div class="d-flex justify-content-between">
+                  {{$t('lang.'+ lang)}} <img :src="require(`@/assets/images/${lang}.svg`)" class="img-flag" alt="Icon Lang"/>
+                </div>
+              </b-dropdown-item>
+            </b-nav-item-dropdown>        
           </b-navbar-nav>
         </b-collapse>        
       </div>
@@ -41,10 +49,26 @@
 ul.dropdown-menu a {
     color: #082f61 !important;
 }
+
+.img-flag {
+  width: 20px;
+  height: 20px;
+}
 </style>
 
 <script>
 export default {
-    name: 'Header'
+    name: 'Header',
+    data () {
+      return { 
+        langs: ['es', 'en'] 
+      }
+    },
+    methods: {
+      changeLanguage: function(lang) {
+        this.$i18n.locale = lang;
+        this.$store.dispatch('language/setLanguage', lang);
+      }
+    }
 }
 </script>
