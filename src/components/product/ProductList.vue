@@ -12,12 +12,6 @@
 				<b-button type="button" variant="primary" v-on:click="addToCart(product.id)">Add</b-button>
 			</div>
 		</div>
-
-		<b-modal button-size="sm" ref="user-not-logged" ok-only title="Warning">
-			<div class="d-block text-center">
-				<h3>You must be logged to use this funcionality</h3>
-			</div>
-		</b-modal>
 	</div>
 </template>
 
@@ -80,8 +74,7 @@ label > .card-title {
 </style>
 
 <script>
-import CartService from '@/service/cart/CartService.js'
-import AuthService from '@/service/auth/AuthService.js'
+import CartService from '@/service/cart/CartService.js';
 
 export default {
 	name: 'ProductList',
@@ -90,19 +83,12 @@ export default {
 	},
 	methods: {
 		addToCart: function(id) {
-			if(!AuthService.isLogged()) {
-				return this.showModal();
-			}
 			CartService.addProductToCart(id)
 				.then(result => console.log(result))
 				.catch((error) => {
 					console.log(error);
 				})
 		},
-
-		showModal() {
-        this.$refs['user-not-logged'].show()
-      }
 	}
 }
 </script>
