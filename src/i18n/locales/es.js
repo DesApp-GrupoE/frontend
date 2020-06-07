@@ -12,9 +12,12 @@ export default {
     "productForm": {
         "findProducts": "Buscar productos"
     },
-    "productList": {
+    "productCard": {
         "imgProductAlt": "Imagen de producto",
-        "add": "Agregar"
+        "add": "Agregar",
+        "added": "Agregado",
+        "seeDetail": "Ver detalle",
+        "infoQuantities": "Vea el carrito para cambiar las cantidades"
     },
     "ShoppingCart": {
         "yourCartEmpty": "Tu carrito esta vacio",

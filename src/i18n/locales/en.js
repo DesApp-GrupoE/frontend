@@ -12,9 +12,12 @@ export default {
     "productForm": {
         "findProducts": "Find products"
     },
-    "productList": {
-        "imgProductAlt": "Img product",
-        "add": "Add"
+    "productCard": {
+        "imgProductAlt": "Image product",
+        "add": "Add",
+        "added": "Added",
+        "seeDetail": "See detail",
+        "infoQuantities": "See cart to change quantities"
     },
     "ShoppingCart": {
         "yourCartEmpty": "Your shopping cart is empty",
