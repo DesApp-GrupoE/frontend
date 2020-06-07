@@ -16,12 +16,12 @@
             <b-nav-item-dropdown right>
               <!--  Language  -->
               <template slot="button-content">
-                <span>{{$t('Language')}}</span> <img :src="require(`@/assets/images/${$i18n.locale}.svg`)" class="img-flag" alt="Icon Lang"/>
+                <span>{{$t('Language')}}</span> <font-awesome-icon icon="globe-americas"/>
               </template>
               <b-dropdown-item href="#" v-for="(lang, i) in langs" :key="`Lang${i}`" 
                                 :value="lang" @click="changeLanguage(lang)">
                 <div class="d-flex justify-content-between">
-                  {{$t('lang.'+ lang)}} <img :src="require(`@/assets/images/${lang}.svg`)" class="img-flag" alt="Icon Lang"/>
+                  {{$t('lang.'+ lang)}}
                 </div>
               </b-dropdown-item>
             </b-nav-item-dropdown>        
