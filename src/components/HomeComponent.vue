@@ -12,6 +12,8 @@
 import ProductForm from '@/components/forms/ProductFormComponent.vue';
 import ProductList from '@/components/product/ProductList.vue'
 
+import CartService from '@/service/cart/CartService.js';
+
 export default {
   name: 'HomeComponent',
   components: {
@@ -29,6 +31,9 @@ export default {
       this.findProducts = true;
       this.products = products;
     }
-  }
+  },
+  mounted() {
+		CartService.checkStatusKeyOrCreateShoppingCart();
+	},
 }
 </script>

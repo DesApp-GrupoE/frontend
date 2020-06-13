@@ -4,6 +4,15 @@ const KEY_CART = 'KEY_CART';
 
 class CartService {
 
+    checkStatusKeyOrCreateShoppingCart() {
+        this.getShoppingCart()
+            .catch(() => {
+                // si no podemos obtener el shopping cart con la key que tenemos
+                // entonces eliminamos la key
+                localStorage.removeItem(KEY_CART);
+            })
+    }
+
     getShoppingCart() {
         return this.getKeyCart()
             .then(keyCart => {
