@@ -10,7 +10,9 @@ export default {
         "noResults": "Without results"
     },
     "productForm": {
-        "findProducts": "Find products"
+        "yourAddress": "Your address. E.G: Alsina 56, Quilmes, Buenos Aires",
+        "findProducts": "Find products",
+        "selectRadioKm": "Search's Radio in kilometers"
     },
     "productCard": {
         "imgProductAlt": "Image product",

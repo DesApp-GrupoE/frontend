@@ -1,5 +1,5 @@
 <template>
-	<div class="d-flex list-products" v-show="products.length > 0">
+	<div class="d-flex flex-wrap list-products" v-show="products.length > 0">
 		<ProductCard v-for="product in products" :product="product" :key="`product-${product.id}`" 
 					@errorOnAddProduct="showModalError"
 		/>

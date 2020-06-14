@@ -1,31 +1,35 @@
 <template>
 	<div class="card card-product">
-		<div class="card-content">
-			<img :src="product.img" class="card-img-top card-img-product" :alt="$t('productCard.imgProductAlt')"/>
+		<div>
+			<label class="card-title-product pl-2 pr-2">Test</label>
+			<div class="card-content">
+				<img :src="product.img" class="card-img-top card-img-product" :alt="$t('productCard.imgProductAlt')"/>
+			</div>
+			<b-card-text class="p-2">
+				<span class="card-title-product">{{product.brand}}</span><br/>
+				{{product.name}}<br/>
+			</b-card-text>
 		</div>
-		<b-card-text class="text-center">
-			{{product.name}}<br/>
-			$ {{product.price}}
-		</b-card-text>
-		<div class="text-center">
-			<b-button class="btn-product" type="button" variant="primary" v-on:click="addToCart(product.id)" v-if="!added">
+		<div>
+			<span class="pl-2 pb-2">$ {{product.price}}</span>
+			<div class="d-flex justify-content-around align-items-center mb-1">
+				<b-button type="button" variant="secondary" v-on:click="seeDetail(product.id)" :title="$t('productCard.seeDetail')">
+					<font-awesome-icon icon="eye"/>
+				</b-button>
+				<b-button class="btn-product" type="button" variant="primary" v-on:click="addToCart(product.id)" v-if="!added">
 				{{$t('productCard.add')}}
-			</b-button>
-			<b-button class="btn-product" type="button" variant="success" :title="$t('productCard.infoQuantities')" v-if="added">
-				{{$t('productCard.added')}}
-			</b-button>
-		</div>
-		<div class="text-center">
-			<b-button class="btn-product" type="button" variant="primary" v-on:click="seeDetail(product.id)">
-				{{$t('productCard.seeDetail')}}
-			</b-button>
+				</b-button>
+				<b-button class="btn-product" type="button" variant="success" :title="$t('productCard.infoQuantities')" v-if="added">
+					{{$t('productCard.added')}}
+				</b-button>
+			</div>
 		</div>
 	</div>
 </template>
 
 <style scoped>
 .card-product {
-	width: 24%;
+	width: 18.5%;
 	margin: 5px;
   padding: 10px;
 	border: 0px;
@@ -34,13 +38,13 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.card-title {
-	margin-top: 0.75rem;
+.card-text {
+	min-height: 70px;
 }
 
-label > .card-title {
-	width: 100%;
+.card-title-product {
 	font-weight: bold;
+	color: #082f61;
 }
 
 .card-content {
@@ -58,14 +62,13 @@ label > .card-title {
 }
 
 .btn-product {
-	width: 150px;
-	margin-bottom: 10px;
+	width: 65%;
 }
 
 /* Media sm bootstrap */
 @media screen and (max-width: 768px) {
   .card-product {
-    width: 48%;
+    width: 31%;
   }
 }
 

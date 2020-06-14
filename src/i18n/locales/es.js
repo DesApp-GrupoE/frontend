@@ -10,7 +10,9 @@ export default {
         "noResults": "Sin resultados"
     },
     "productForm": {
-        "findProducts": "Buscar productos"
+        "yourAddress": "Tu dirección. Por Ejemplo: Alsina 56, Quilmes, Buenos Aires",
+        "findProducts": "Buscar productos",
+        "selectRadioKm": "Radio de kilometros de búsqueda"
     },
     "productCard": {
         "imgProductAlt": "Imagen de producto",

@@ -8,7 +8,7 @@ import { BootstrapVue } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faShoppingCart, faTimesCircle, faGlobeAmericas, faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { faShoppingCart, faTimesCircle, faGlobeAmericas, faUserCircle, faEye } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import '@/assets/css/fonts.css';
 import '@/assets/css/core.css';
@@ -16,7 +16,7 @@ import '@/assets/css/core.css';
 // Install BootstrapVue
 Vue.use(BootstrapVue)
 // Install Font-Awesome
-library.add(faShoppingCart, faTimesCircle, faGlobeAmericas, faUserCircle)
+library.add(faShoppingCart, faTimesCircle, faGlobeAmericas, faUserCircle, faEye)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false
