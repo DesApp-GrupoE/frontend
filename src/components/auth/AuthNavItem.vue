@@ -1,27 +1,48 @@
 <template>
-	<b-nav-item right>
-		<!--  Login  -->
-		<div class="d-flex justify-content-end align-items-center auth" v-on:click="showModal">
-			<font-awesome-icon icon="user-circle"/> <span>Sign In</span>
-		</div>
-
-		<b-modal v-model="modalShow" title="Login" hide-footer>
-			<div class="row m-2 justify-content-end">
-				<input type="text" class="form-control input-login" placeholder="email">
-				<input type="password" class="form-control input-login" placeholder="password">
+	<div>
+		<b-nav-item class="d-flex align-items-start justify-content-end" v-if="!isLogged" right>
+			<!--  Login  -->
+			<div class="d-flex justify-content-end align-items-center auth" v-on:click="showModalLogin">
+				<font-awesome-icon icon="user-circle"/> <span>Sign In</span>
 			</div>
-			<button class="btn btn-primary float-right">Login</button>
-		</b-modal>
-	</b-nav-item>
+			<b-modal v-model="modalLogin" v-if="modalLogin && !isLogged" title="Form of sign in" hide-footer>
+				<b-form @submit="onSubmitSignIn">
+					<div class="d-flex justify-content-between flex-wrap mb-2">
+						<b-form-input id="form-sign-in-email" class="mb-2"
+							placeholder="Email" v-model="form.email" type="email" required >
+						</b-form-input>
+						<b-form-input id="form-sign-in-password" class="mb-2"
+							placeholder="Password" v-model="form.password" type="password" required >
+						</b-form-input>
+					</div>
+
+					<div class="d-flex justify-content-between">
+						<button class="btn btn-default sign-up" v-on:click="showModalSignUp">Sign Up</button>
+						<button class="btn btn-primary">Sign In</button>
+					</div>
+				</b-form>
+			</b-modal>
+
+			<b-modal v-model="modalResponseShow" :title="modalResponse.title" ok-only>
+				<h5 v-if="modalResponse.msg">{{modalResponse.msg}}</h5>
+				<h5 v-else>{{$t('ShoppingCart.modalError.tryAgain')}}</h5>
+			</b-modal>
+
+			<SignUpModal ref="SignUp"/>
+		</b-nav-item>
+
+		<LoggedNavDropdown v-if="isLogged" />
+	</div>
 </template>
 
 <style scoped>
-.nav-link {
-	padding: 0;
+.sign-up {
+	border: solid 2px #082f61;
+	border-radius: 5px;
 }
 
-.input-login {
-	margin-bottom: 10px;
+.nav-link {
+	padding: 0;
 }
 
 .auth {
@@ -34,17 +55,63 @@
 </style>
 
 <script>
+import AuthService from '@/service/auth/AuthService.js';
+
+import SignUpModal from './SignUpModal.vue';
+import LoggedNavDropdown from './LoggedNavDropdown.vue';
+
 export default {
 	name: 'AuthNavItem',
+	components: {
+		SignUpModal,
+		LoggedNavDropdown
+	},
 	data() {
 		return {
-			modalShow: false
+			isLogged: false,
+			modalLogin: false,
+			form: {
+				email: '',
+				password: ''
+			},
+			modalResponseShow: false,
+			modalResponse: {
+				title: 'Error',
+				msg: null
+			},
 		}
 	},
+
 	methods: {
-		showModal: function() {
-			this.modalShow = true;
+		showModalLogin: function() {
+			this.modalLogin = true;
+		},
+		showModalSignUp: function() {
+			this.modalLogin = false;
+			this.$refs.SignUp.showModal();
+		},
+		onSubmitSignIn(evt) {
+			evt.preventDefault(); // Esto evita que se recargue la pagina a causa del submit
+			AuthService.signIn(this.form)
+				.then((response) => {
+					let token = `${response.data.type} ${response.data.token}`;
+					localStorage.setItem('token', token)
+					window.location.reload();
+				})
+				.catch(error => {
+					this.modalResponse.title = "Error"
+					if(error.response.data) {
+						this.modalResponse.msg = error.response.data.error;
+					} else {
+						// Set null para que muestre error generico
+						this.modalResponse.msg = null;
+					}
+					this.modalResponseShow = true;
+				})
 		}
+	},
+	mounted() {
+		this.isLogged = AuthService.isLogged();
 	}
 }
 </script>

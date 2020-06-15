@@ -1,7 +1,7 @@
 <template>
 	<div class="card card-product">
 		<div>
-			<label class="card-title-product pl-2 pr-2">Test</label>
+			<!-- <label class="card-title-product pl-2 pr-2">Test</label> -->
 			<div class="card-content">
 				<img :src="product.img" class="card-img-top card-img-product" :alt="$t('productCard.imgProductAlt')"/>
 			</div>
@@ -13,9 +13,9 @@
 		<div>
 			<span class="pl-2 pb-2">$ {{product.price}}</span>
 			<div class="d-flex justify-content-around align-items-center mb-1">
-				<b-button type="button" variant="secondary" v-on:click="seeDetail(product.id)" :title="$t('productCard.seeDetail')">
+				<!-- <b-button type="button" variant="secondary" v-on:click="seeDetail(product.id)" :title="$t('productCard.seeDetail')">
 					<font-awesome-icon icon="eye"/>
-				</b-button>
+				</b-button> -->
 				<b-button class="btn-product" type="button" variant="primary" v-on:click="addToCart(product.id)" v-if="!added">
 				{{$t('productCard.add')}}
 				</b-button>
@@ -29,6 +29,7 @@
 
 <style scoped>
 .card-product {
+	justify-content: space-between;
 	width: 18.5%;
 	margin: 5px;
   padding: 10px;

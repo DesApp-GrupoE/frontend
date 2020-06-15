@@ -2,7 +2,7 @@
   <div>
     <b-navbar id="nav" toggleable="sm" type="dark" variant="dark">
       <div class="container d-flex align-items-start">
-        <b-navbar-brand>
+        <b-navbar-brand class="p-0">
           <router-link to="/">Home</router-link>
         </b-navbar-brand>
 
@@ -11,7 +11,11 @@
 
           <div class="d-flex justify-content-end align-items-center">
             <AuthNavItem class="d-flex justify-content-center align-items-center d-lg-none auth-dropdown" />
-            <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+            <b-navbar-toggle target="nav-collapse">
+              <template>
+                <font-awesome-icon icon="bars"/>
+              </template>
+            </b-navbar-toggle>
           </div>
 
           <b-collapse id="nav-collapse" is-nav>
@@ -68,6 +72,8 @@ ul.dropdown-menu a {
   margin-right: 10px;
 }
 </style>
+
+
 
 <script>
 import AuthNavItem from '@/components/auth/AuthNavItem.vue';
