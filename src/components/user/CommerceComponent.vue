@@ -2,22 +2,22 @@
   <div class="panel-profile">
     <div v-if="commerce">
       <p>
-        Commerce: {{this.commerce.name}} <br/>
-        Address: {{this.commerce.address}} {{this.commerce.addressNumber}}, {{this.commerce.location}} <br/>
-        Phone: {{this.commerce.phone}}
+        {{$t('CommerceComp.commerce')}}: {{this.commerce.name}} <br/>
+        {{$t('CommerceComp.address')}}: {{this.commerce.address}} {{this.commerce.addressNumber}}, {{this.commerce.location}} <br/>
+        {{$t('CommerceComp.phone')}}: {{this.commerce.phone}}
       </p>
       <div class="mb-2">
-        <button class="btn btn-primary mr-2" v-on:click="findProducts">Products</button>
-        <button class="btn btn-primary mr-2" v-on:click="modalCreateProduct">Create Product</button>
+        <button class="btn btn-primary mr-2" v-on:click="findProducts">{{$t('CommerceComp.products')}}</button>
+        <button class="btn btn-primary mr-2" v-on:click="modalCreateProduct">{{$t('CommerceComp.createProduct')}}</button>
       </div>
 
       <div v-if="products.length">
         <div class="row mb-1">
           <div class="col-11">
             <div class="row bold header-product d-flex justify-content-center text-center">
-              <div class="col-6">Name</div>
-              <div class="col-3">Stock</div>
-              <div class="col-3">Price</div>
+              <div class="col-6">{{$t('CommerceComp.product.name')}}</div>
+              <div class="col-3">{{$t('CommerceComp.product.stock')}}</div>
+              <div class="col-3">{{$t('CommerceComp.product.price')}}</div>
             </div>
           </div>
           <div class="col-1"></div>
@@ -38,32 +38,33 @@
         </div>
       </div>
 
-      <b-modal v-model="modalProduct" title="Form of sign up" hide-footer>
+      <b-modal v-model="modalProduct" :title="$t('CommerceComp.product.formTitle')" hide-footer>
         <b-form @submit="onSubmitCreateProduct">
           <div class="d-flex justify-content-between flex-wrap">
             <b-form-input id="form-name" class="mb-2"
-              placeholder="Name" v-model="formProduct.name" type="text" required >
+              :placeholder="$t('CommerceComp.product.name')" v-model="formProduct.name" type="text" required >
             </b-form-input>
             
             <b-form-input id="form-brand" class="mb-2"
-              placeholder="Brand" v-model="formProduct.brand" type="text" required >
+              :placeholder="$t('CommerceComp.product.brand')" v-model="formProduct.brand" type="text" required >
             </b-form-input>
 
             <b-form-input id="form-price" class="mb-2"
-              placeholder="Price" v-model="formProduct.price" type="text" required >
+              :placeholder="$t('CommerceComp.product.price')" v-model="formProduct.price" type="text" required >
             </b-form-input>
 
             <b-form-input id="form-stock" class="mb-2"
-              placeholder="Stock" v-model="formProduct.stock" type="text" v-numeric-pos-only required >
+              :placeholder="$t('CommerceComp.product.stock')" v-model="formProduct.stock" type="text" 
+              v-numeric-pos-only required >
             </b-form-input>
 
             <b-form-input id="form-img" class="mb-2"
-              placeholder="Url Image" v-model="formProduct.img" type="text" required >
+              :placeholder="$t('CommerceComp.product.urlImage')" v-model="formProduct.img" type="text" required >
             </b-form-input>
           </div>
 
           <div class="d-flex justify-content-end">
-            <b-button type="submit" variant="primary">Create</b-button>
+            <b-button type="submit" variant="primary">{{$t('CommerceComp.product.create')}}</b-button>
           </div>
         </b-form>
       </b-modal>
@@ -74,7 +75,7 @@
       </b-modal>
     </div>
     <div v-else>
-      You have not commerce
+      {{$t('CommerceComp.withoutCommerce')}}
     </div>
   </div>
 </template>
@@ -144,8 +145,8 @@ export default {
         .then(response => {
           this.products.push(response.data);
           this.formProduct = {};
-          this.modalResponse.title = "Success";
-          this.modalResponse.msg = "Product created";
+          this.modalResponse.title = this.$t('CommerceComp.product.success');
+          this.modalResponse.msg = this.$t('CommerceComp.product.productCreated');
           this.modalProduct = false;
 				})
 				.catch(error => {

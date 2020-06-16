@@ -1,27 +1,27 @@
 <template>
 	<div>
-		<b-modal v-model="modalFormShow" title="Form of sign up" hide-footer>
+		<b-modal v-model="modalFormShow" :title="$t('SignUpModal.titleForm')" hide-footer>
 			<b-form @submit="onSubmitSignUp">
 				<div class="d-flex justify-content-between flex-wrap">
 					<b-form-input id="form-sign-up-name" class="mb-2"
-						placeholder="Your name" v-model="form.name" type="text" required >
+						:placeholder="$t('SignUpModal.yourName')" v-model="form.name" type="text" required >
 					</b-form-input>
 					
 					<b-form-input id="form-sign-up-surname" class="mb-2"
-						placeholder="Your surname" v-model="form.surname" type="text" required >
+						:placeholder="$t('SignUpModal.yourSurname')" v-model="form.surname" type="text" required >
 					</b-form-input>
 
 					<b-form-input id="form-sign-up-email" class="mb-2"
-						placeholder="Email" v-model="form.email" type="email" required >
+						:placeholder="$t('SignUpModal.email')" v-model="form.email" type="email" required >
 					</b-form-input>
 
 					<b-form-input id="form-sign-up-password" class="mb-2"
-						placeholder="Password" v-model="form.password" type="password" required >
+						:placeholder="$t('SignUpModal.password')" v-model="form.password" type="password" required >
 					</b-form-input>
 				</div>
 
 				<div class="d-flex justify-content-end">
-					<b-button type="submit" variant="primary">Sign Up</b-button>
+					<b-button type="submit" variant="primary">{{$t('SignUpModal.signUp')}}</b-button>
 				</div>
 			</b-form>
 		</b-modal>
@@ -63,7 +63,7 @@ export default {
 			AuthService.signUp(this.form)
 				.then(() => {
 					this.modalResponse.title = null;
-					this.modalResponse.msg = "You have signed up successfully";
+					this.modalResponse.msg = this.$t('SignUpModal.successfullySignUp');
 					this.modalFormShow = false;
 				})
 				.catch(error => {

@@ -1,8 +1,8 @@
 <template>
   <div class="panel-profile" v-if="user">
-    Name: {{user.name}} <br/>
-    Surname: {{user.surname}} <br/>
-    Email: {{user.email}} <br/>
+    {{$t('ProfileComp.name')}}: {{user.name}} <br/>
+    {{$t('ProfileComp.surname')}}: {{user.surname}} <br/>
+    {{$t('ProfileComp.email')}}: {{user.email}} <br/>
   </div>
 </template>
 

@@ -37,6 +37,57 @@ export default {
             "title": "Advertencia",
             "tryAgain": "Ha ocurrido un error. Por favor, intente de nuevo"
         }
+    },
+    "AuthNavItem": {
+        "signIn": "Iniciar sesión",
+        "formOfSignIn": "Formulario de inicio de sesión",
+        "formSignIn" : {
+            "Email": "Email",
+            "Password": "Password"
+        },
+        "signUp": "Registrate"
+    },
+    "SignUpModal": {
+        "titleForm": "Formulario de registro",
+        "yourName": "Tu nombre",
+        "yourSurname": "Tu apellido",
+        "email": "Email",
+        "password": "Password",
+        "signUp": "Registrate",
+        "successfullySignUp": "Te has registrado exitosamente"
+    },
+    "LoggedNavDropdown": {
+        "welcome": "Bienvenida/o",
+        "profile": "Perfil",
+        "signOut": "Salir"
+    },
+    "ProfileView": {
+        "profile": "Perfil",
+        "commerce": "Comercio"
+    },
+    "ProfileComp": {
+        "name": "Nombre",
+        "surname": "Apellido",
+        "email": "Email"
+    },
+    "CommerceComp": {
+        "withoutCommerce": "No tienes un comercio",
+        "commerce": "Comercio",
+        "address": "Dirección",
+        "phone": "Teléfono",
+        "products": "Productos",
+        "createProduct": "Crear producto",
+        "product": {
+            "name": "Nombre",
+            "stock": "Stock",
+            "price": "Precio",
+            "formTitle": "Formulario de producto",
+            "brand": "Marca",
+            "urlImage": "Url de imagen",
+            "create": "Crear",
+            "success": "Exito",
+            "productCreated": "Producto creado"
+        }
     }
 
 }

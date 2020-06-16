@@ -2,10 +2,10 @@
   <div class="d-flex panel-home">
     <b-nav id="nav" vertical class="col-2 sidebar">
       <b-nav-item href="/profile/">
-        <font-awesome-icon icon="user-circle" class="mr-1"/><span>Profile</span>
+        <font-awesome-icon icon="user-circle" class="mr-1"/><span>{{$t('ProfileView.profile')}}</span>
       </b-nav-item>
       <b-nav-item href="/commerce">
-        <font-awesome-icon icon="store" class="mr-1"/><span>Commerce</span>
+        <font-awesome-icon icon="store" class="mr-1"/><span>{{$t('ProfileView.commerce')}}</span>
       </b-nav-item>
     </b-nav>
 

@@ -1,13 +1,13 @@
 <template>
   <b-nav-item-dropdown class="d-flex align-items-start justify-content-end auth-dropdown" right>
     <template slot="button-content">
-      <font-awesome-icon class="m-0" icon="user-circle"/> <span>Welcome! </span>
+      <font-awesome-icon class="m-0" icon="user-circle"/> <span>{{$t('LoggedNavDropdown.welcome')}} </span>
     </template>
     <b-dropdown-item href="/profile">
-      <router-link to="/profile" class="black">Profile</router-link>
+      <router-link to="/profile" class="black">{{$t('LoggedNavDropdown.profile')}}</router-link>
     </b-dropdown-item>
     <b-dropdown-item href="#" v-on:click="logout">
-      Sign out
+      {{$t('LoggedNavDropdown.signOut')}}
     </b-dropdown-item>
   </b-nav-item-dropdown>
 </template>

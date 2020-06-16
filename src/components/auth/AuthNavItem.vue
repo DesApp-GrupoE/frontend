@@ -3,22 +3,22 @@
 		<b-nav-item class="d-flex align-items-start justify-content-end" v-if="!isLogged" right>
 			<!--  Login  -->
 			<div class="d-flex justify-content-end align-items-center auth" v-on:click="showModalLogin">
-				<font-awesome-icon icon="user-circle"/> <span>Sign In</span>
+				<font-awesome-icon icon="user-circle"/> <span>{{$t('AuthNavItem.signIn')}}</span>
 			</div>
-			<b-modal v-model="modalLogin" v-if="modalLogin && !isLogged" title="Form of sign in" hide-footer>
+			<b-modal v-model="modalLogin" v-if="modalLogin && !isLogged" :title="$t('AuthNavItem.formOfSignIn')" hide-footer>
 				<b-form @submit="onSubmitSignIn">
 					<div class="d-flex justify-content-between flex-wrap mb-2">
 						<b-form-input id="form-sign-in-email" class="mb-2"
-							placeholder="Email" v-model="form.email" type="email" required >
+							:placeholder="$t('AuthNavItem.formSignIn.Email')" v-model="form.email" type="email" required >
 						</b-form-input>
 						<b-form-input id="form-sign-in-password" class="mb-2"
-							placeholder="Password" v-model="form.password" type="password" required >
+							:placeholder="$t('AuthNavItem.formSignIn.Password')" v-model="form.password" type="password" required >
 						</b-form-input>
 					</div>
 
 					<div class="d-flex justify-content-between">
-						<button class="btn btn-default sign-up" v-on:click="showModalSignUp">Sign Up</button>
-						<button class="btn btn-primary">Sign In</button>
+						<button class="btn btn-default sign-up" v-on:click="showModalSignUp">{{$t('AuthNavItem.signUp')}}</button>
+						<button class="btn btn-primary">{{$t('AuthNavItem.signIn')}}</button>
 					</div>
 				</b-form>
 			</b-modal>
