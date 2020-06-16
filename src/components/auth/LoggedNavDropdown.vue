@@ -3,14 +3,20 @@
     <template slot="button-content">
       <font-awesome-icon class="m-0" icon="user-circle"/> <span>Welcome! </span>
     </template>
-    <b-dropdown-item href="#">
-      Profile
+    <b-dropdown-item href="/profile">
+      <router-link to="/profile" class="black">Profile</router-link>
     </b-dropdown-item>
     <b-dropdown-item href="#" v-on:click="logout">
       Sign out
     </b-dropdown-item>
   </b-nav-item-dropdown>
 </template>
+
+<style scoped>
+.black {
+  color: #000;
+}
+</style>
 
 <style>
 /* Este style no es scoped porque no puede agregarle estilo al b-nav-item-dropdown, ya que es un componente del cual
@@ -38,7 +44,7 @@ export default {
           localStorage.removeItem('token');
           window.location.reload();
         })
-    },
+    }
   }
   
 }
