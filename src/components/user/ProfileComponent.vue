@@ -27,6 +27,7 @@ export default {
     UserService.getProfile()
       .then(response => {
         this.user = response.data;
+        localStorage.setItem('userId', response.data.id)
       })
   }
 }
