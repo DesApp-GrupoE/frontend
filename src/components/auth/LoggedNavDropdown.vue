@@ -1,7 +1,7 @@
 <template>
   <b-nav-item-dropdown class="d-flex align-items-start justify-content-end auth-dropdown" right>
     <template slot="button-content">
-      <font-awesome-icon class="m-0" icon="user-circle"/> <span>{{$t('LoggedNavDropdown.welcome')}} </span>
+      <font-awesome-icon class="m-0" icon="user-circle"/> <span>{{$t('LoggedNavDropdown.welcome')}} {{getNameUser()}}</span>
     </template>
     <b-dropdown-item href="/profile">
       <router-link to="/profile" class="black">{{$t('LoggedNavDropdown.profile')}}</router-link>
@@ -38,12 +38,20 @@ export default {
       AuthService.logout()
         .then(() => {
           localStorage.removeItem('token');
+          localStorage.removeItem('userId');
+          localStorage.removeItem('userName');
           window.location.reload();
         })
         .catch(() => {
           localStorage.removeItem('token');
+          localStorage.removeItem('userId');
+          localStorage.removeItem('userName');
           window.location.reload();
         })
+    },
+
+    getNameUser() {
+      return localStorage.getItem('userName');
     }
   }
   

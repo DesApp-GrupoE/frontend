@@ -18,7 +18,7 @@
 
 					<div class="d-flex justify-content-between">
 						<button class="btn btn-default sign-up" v-on:click="showModalSignUp">{{$t('AuthNavItem.signUp')}}</button>
-						<button class="btn btn-primary">{{$t('AuthNavItem.signIn')}}</button>
+						<button type="submit" class="btn btn-primary">{{$t('AuthNavItem.signIn')}}</button>
 					</div>
 				</b-form>
 			</b-modal>
@@ -56,6 +56,7 @@
 
 <script>
 import AuthService from '@/service/auth/AuthService.js';
+import UserService from '@/service/user/UserService.js';
 
 import SignUpModal from './SignUpModal.vue';
 import LoggedNavDropdown from './LoggedNavDropdown.vue';
@@ -96,6 +97,11 @@ export default {
 				.then((response) => {
 					let token = `${response.data.type} ${response.data.token}`;
 					localStorage.setItem('token', token)
+					return UserService.getProfile();
+				})
+				.then((response) => {
+					let user = response.data;
+					localStorage.setItem('userName', user.name);
 					window.location.reload();
 				})
 				.catch(error => {
