@@ -6,7 +6,7 @@
           <router-link to="/">Home</router-link>
         </b-navbar-brand>
 
-        <div class="d-flex-justify-content-end">
+        <div class="">
           <AuthNavItem class="d-lg-block d-none" />
 
           <div class="d-flex justify-content-end align-items-center">

@@ -7,6 +7,8 @@ import Home from '@/views/Home.vue';
 import Profile from '@/views/Profile.vue';
 import ProfileComponent from '@/components/user/ProfileComponent.vue';
 import CommerceComponent from '@/components/user/CommerceComponent.vue';
+import AbmCommerce from '@/components/user/commerce/AbmCommerce.vue';
+import AbmProducts from '@/components/user/commerce/AbmProducts.vue';
 
 Vue.use(VueRouter)
 
@@ -38,9 +40,21 @@ Vue.use(VueRouter)
         component: ProfileComponent
       },
       {
-        path: '/commerce',
+        path: '/profile/commerce',
         name: 'CommerceComponent',
-        component: CommerceComponent
+        component: CommerceComponent,
+        children: [
+          {
+            path: '/profile/commerce/',
+            name: 'AbmCommerce',
+            component: AbmCommerce
+          },
+          {
+            path: '/profile/commerce/products',
+            name: 'AbmProducts',
+            component: AbmProducts
+          }
+        ]
       }
     ]
   }

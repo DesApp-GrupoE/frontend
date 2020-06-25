@@ -4,6 +4,12 @@ export default {
         "es": "Español",
         "en": "English"
     },
+    "ModalResponse": {
+        "error": {
+            "title": "Advertencia",
+            "tryAgain": "Ha ocurrido un error. Por favor, intente de nuevo"
+        }
+    },
     "Cart": "Carrito",
     "Search": "Buscar",
     "HomeComponent": {
@@ -70,11 +76,71 @@ export default {
         "surname": "Apellido",
         "email": "Email"
     },
+    "Commerce": {
+        "sector": {
+            "OTHER": "Otro",
+            "GROCERY_STORE": "Almacen",
+            "BUTCHERS_SHOP": "Carnicería",
+            "DELI_COUNTER": "Fiambrería",
+            "BAKERY": "Panadería",
+            "FRUIT_STORE": "Verdulería",
+            "HARDWARE_STORE": "Ferretería",
+            "ICE_CREAM_SHOP": "Heladería"
+        },
+        "errors": {
+            "name": {
+                "notNull": "Debes completar el nombre"
+            },
+            "address": {
+                "notNull": "Debes completar la dirección"
+            },
+            "latitude": {
+                "notNull": "Debes completar la latitud de la dirección"
+            },
+            "longitude": {
+                "notNull": "Debes completar la longitud de la dirección"
+            },
+            "phone": {
+                "notNull": "Debes completar el teléfono"
+            },
+            "sectors": {
+                "notEmpty": "Debes elegir al menos un sector"
+            },
+            "hours": {
+                "notEmpty": "Debes cargar al menos un horario"
+            }
+        },
+    },
     "CommerceComp": {
         "withoutCommerce": "No tienes un comercio",
+        "doYouWantCreateACommerce": "¡Haz click aquí, si quieres comenzar a vender!",
+        "commerceData": "Datos del comercio",
+        "sectors": "Rubros:",
         "commerce": "Comercio",
-        "address": "Dirección",
+        "address": "Dirección. Por Ejemplo: Alsina 56, Quilmes, Buenos Aires",
         "phone": "Teléfono",
+        "form": {
+            "name": "Nombre",
+            "address": "Dirección",
+            "phone": "Teléfono",
+            "hours": {
+                "hours": "Horarios",
+                "day": "Día",
+                "openAt": "Abre a",
+                "closeAt": "Cierra a",
+                "openToday": "Abre hoy",
+                "days": {
+                    "Monday": "Lunes",
+                    "Tuesday": "Martes",
+                    "Wednesday": "Miércoles",
+                    "Thursday": "Jueves",
+                    "Friday": "Viernes",
+                    "Saturday": "Sábado",
+                    "Sunday": "Domingo"
+                }
+            },
+            "createCommerce": "Crear comercio"
+        },
         "products": "Productos",
         "createProduct": "Crear producto",
         "product": {
@@ -88,6 +154,11 @@ export default {
             "success": "Exito",
             "productCreated": "Producto creado"
         }
+    },
+    "AbmCommerce": {
+        "name": "Nombre",
+        "address": "Dirección",
+        "phone": "Teléfono",
+        "sectors": "Rubros"
     }
-
 }

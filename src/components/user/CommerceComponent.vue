@@ -1,115 +1,155 @@
 <template>
-  <div class="panel-profile">
+  <div class="panel-profile pt-0">
     <div v-if="commerce">
-      <p>
-        {{$t('CommerceComp.commerce')}}: {{this.commerce.name}} <br/>
-        {{$t('CommerceComp.address')}}: {{this.commerce.address}} {{this.commerce.addressNumber}}, {{this.commerce.location}} <br/>
-        {{$t('CommerceComp.phone')}}: {{this.commerce.phone}}
-      </p>
-      <div class="mb-2">
-        <button class="btn btn-primary mr-2" v-on:click="findProducts">{{$t('CommerceComp.products')}}</button>
-        <button class="btn btn-primary mr-2" v-on:click="modalCreateProduct">{{$t('CommerceComp.createProduct')}}</button>
+      <b-nav id="nav" class="sidebar">
+        <b-nav-item href="/profile/commerce/" class="m-1">
+          <font-awesome-icon icon="home" class="mr-1"/>
+        </b-nav-item>
+        <b-nav-item href="/profile/commerce/products" class="m-1">
+          <font-awesome-icon icon="shopping-basket" class="mr-1"/><span>Productos</span>
+        </b-nav-item>
+        <b-nav-item href="/profile/commerce/hours" class="m-1">
+          <font-awesome-icon icon="clock" class="mr-1"/><span>Horarios</span>
+        </b-nav-item>
+      </b-nav>
+      
+      <div class="p-2">
+        <router-view :commerce="commerce"></router-view>
       </div>
-
-      <div v-if="products.length">
-        <div class="row mb-1">
-          <div class="col-11">
-            <div class="row bold header-product d-flex justify-content-center text-center">
-              <div class="col-6">{{$t('CommerceComp.product.name')}}</div>
-              <div class="col-3">{{$t('CommerceComp.product.stock')}}</div>
-              <div class="col-3">{{$t('CommerceComp.product.price')}}</div>
-            </div>
-          </div>
-          <div class="col-1"></div>
-        </div>
-        <hr>
-
-        <div class="row mb-3" v-for="product in products" :key="product.id">
-          <div class="col-11">
-            <div class="row bold header-product d-flex justify-content-center text-center">
-              <div class="col-6">{{product.name}}</div>
-              <div class="col-3">{{product.stock}}</div>
-              <div class="col-3">{{product.price}}</div>
-            </div>
-          </div>
-          <div class="col-1">
-            <font-awesome-icon class="pointer" icon="times-circle" v-on:click="removeProduct(product.id)"/>
-          </div>
-        </div>
-      </div>
-
-      <b-modal v-model="modalProduct" :title="$t('CommerceComp.product.formTitle')" hide-footer>
-        <b-form @submit="onSubmitCreateProduct">
-          <div class="d-flex justify-content-between flex-wrap">
-            <b-form-input id="form-name" class="mb-2"
-              :placeholder="$t('CommerceComp.product.name')" v-model="formProduct.name" type="text" required >
-            </b-form-input>
-            
-            <b-form-input id="form-brand" class="mb-2"
-              :placeholder="$t('CommerceComp.product.brand')" v-model="formProduct.brand" type="text" required >
-            </b-form-input>
-
-            <b-form-input id="form-price" class="mb-2"
-              :placeholder="$t('CommerceComp.product.price')" v-model="formProduct.price" type="text" required >
-            </b-form-input>
-
-            <b-form-input id="form-stock" class="mb-2"
-              :placeholder="$t('CommerceComp.product.stock')" v-model="formProduct.stock" type="text" 
-              v-numeric-pos-only required >
-            </b-form-input>
-
-            <b-form-input id="form-img" class="mb-2"
-              :placeholder="$t('CommerceComp.product.urlImage')" v-model="formProduct.img" type="text" required >
-            </b-form-input>
-          </div>
-
-          <div class="d-flex justify-content-end">
-            <b-button type="submit" variant="primary">{{$t('CommerceComp.product.create')}}</b-button>
-          </div>
-        </b-form>
-      </b-modal>
-
-      <b-modal v-model="modalResponseShow" :title="modalResponse.title" ok-only>
-        <h5 v-if="modalResponse.msg">{{modalResponse.msg}}</h5>
-        <h5 v-else>{{$t('ShoppingCart.modalError.tryAgain')}}</h5>
-      </b-modal>
+      
     </div>
+
     <div v-else>
-      {{$t('CommerceComp.withoutCommerce')}}
+      <div class="mb-2">
+        {{$t('CommerceComp.withoutCommerce')}}. <button class="btn-link" v-on:click="showFormCreateCommerce">{{$t('CommerceComp.doYouWantCreateACommerce')}}</button>
+      </div>
+
+      <b-form @submit="onSubmitCreateCommerce" v-if="showFormCommerce">
+        <span class="bold">{{$t('CommerceComp.commerceData')}}</span>
+        <div class="d-flex justify-content-between flex-wrap">
+          <b-form-input id="form-name" class="mb-2"
+            :placeholder="$t('CommerceComp.form.name')" v-model="formCommerce.name" type="text" required >
+          </b-form-input>
+          
+          <b-form-input id="form-brand" class="mb-2"
+            :placeholder="$t('CommerceComp.form.address')" v-model="formCommerce.address" type="text" required >
+          </b-form-input>
+
+          <b-form-input id="form-price" class="mb-2 mt-1"
+            :placeholder="$t('CommerceComp.form.phone')" v-model="formCommerce.phone" type="text" required >
+          </b-form-input>
+        </div>
+        <div class="mt-2">
+          <span class="bold">{{$t('CommerceComp.sectors')}}</span>
+          <div class="d-flex">
+            <b-form-group>
+              <b-form-checkbox v-model="formCommerce.sectors" v-for="option in sectors" 
+                :key="option" :value="option" :name="`sector-${option}`" inline>
+                {{$t(`Commerce.sector.${option}`)}}
+              </b-form-checkbox>
+            </b-form-group>
+          </div>
+        </div>
+        <div class="table-responsive pt-2">
+          <span class="bold">{{$t('CommerceComp.form.hours.hours')}}</span>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>{{$t('CommerceComp.form.hours.day')}}</th>
+                <th>{{$t('CommerceComp.form.hours.openAt')}}</th>
+                <th>{{$t('CommerceComp.form.hours.closeAt')}}</th>
+                <th>{{$t('CommerceComp.form.hours.openToday')}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="hour in formCommerce.hours" :key="hour.day">
+                <td>{{$t('CommerceComp.form.hours.days.'+hour.day)}}</td>
+                <td><input type="time" v-model="hour.openAt"></td>
+                <td><input type="time" v-model="hour.closeAt"></td>
+                <td><input type="checkbox" v-model="hour.openToday"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="d-flex justify-content-end">
+          <b-button type="submit" variant="primary">{{$t('CommerceComp.form.createCommerce')}}</b-button>
+        </div>
+      </b-form>
     </div>
+
+    <b-modal v-model="modalResponseShow" :title="modalResponse.title" ok-only>
+      <h5 v-if="modalResponse.msg" v-html="modalResponse.msg"></h5>
+      <h5 v-else>{{$t('ShoppingCart.modalError.tryAgain')}}</h5>
+    </b-modal>
   </div>
 </template>
 
 <style scoped>
 .panel-profile {
-	padding: 10px;
 	background-color: #fff;
 }
+
+.nav {
+  background-color: #343a40;
+}
+
+.sidebar > li > a {
+  color: #fff;
+}
+
+
+.btn-link {
+  color: #2c3e50;
+  border: 0;
+  background-color: inherit;
+  outline: none;
+}
+
+.btn-link:hover {
+  color: #2c3e50;
+  text-decoration: underline;
+}
+
 </style>
 
 <script>
 import CommerceService from '@/service/user/CommerceService.js';
-import ProductService from '@/service/user/ProductService.js';
+import PositionStackService from '@/service/positionStack/PositionStackService.js';
 
 export default {
   name: 'CommerceComponent',
   data() {
     return {
       commerce: null,
-      products: [],
-      modalProduct: false,
-      modalResponseShow: false,
-      formProduct: {
+      showFormCommerce: false,
+      formCommerce: {
         name: null,
-        price: null,
-        stock: null,
-        brand: null,
-        img: null
+        phone: null,
+        address: null,
+        latitude: 0.0,
+        longitude: 0.0,
+        sectors: [],
+        hours: [
+          { day: 'Monday', openAt: null, closeAt: null, openToday: false },
+          { day: 'Tuesday', openAt: null, closeAt: null, openToday: false },
+          { day: 'Wednesday', openAt: null, closeAt: null, openToday: false },
+          { day: 'Thursday', openAt: null, closeAt: null, openToday: false },
+          { day: 'Friday', openAt: null, closeAt: null, openToday: false },
+          { day: 'Saturday', openAt: null, closeAt: null, openToday: false },
+          { day: 'Sunday', openAt: null, closeAt: null, openToday: false },
+        ]
       },
+      modalResponseShow: false,
       modalResponse: {
 				title: null,
 				msg: null
 			},
+    }
+  },
+  computed: {
+    sectors() {
+      return this.$store.state.commerceSector.sectors
     }
   },
   mounted() {
@@ -119,48 +159,78 @@ export default {
       })
   },
   methods: {
-    findProducts() {
-      ProductService.findProducts(this.commerce.id)
-        .then(response => {
-          this.products = response.data;
-        })
+    showFormCreateCommerce() {
+      this.showFormCommerce = true;
     },
-    removeProduct(productId) {
-      ProductService.removeProduct(this.commerce.id, productId)
-        .then(() => {
-          let product = this.products.find(p => p.id === productId);
-					if(product) {
-						this.products.splice(this.products.indexOf(product), 1)
-					}
-        })
-    },
-
-    modalCreateProduct() {
-      this.modalProduct = true;
-    },
-
-    onSubmitCreateProduct(evt) {
+    
+    onSubmitCreateCommerce(evt) {
       evt.preventDefault();
-      ProductService.createProduct(this.commerce.id, this.formProduct)
-        .then(response => {
-          this.products.push(response.data);
-          this.formProduct = {};
-          this.modalResponse.title = this.$t('CommerceComp.product.success');
-          this.modalResponse.msg = this.$t('CommerceComp.product.productCreated');
-          this.modalProduct = false;
-				})
-				.catch(error => {
-					this.modalResponse.title = "Error"
-					if(error.response.data) {
-						this.modalResponse.msg = error.response.data.error;
-					} else {
-						// Set null para que muestre error generico
-						this.modalResponse.msg = null;
-					}
-				})
-				.then(() => {
-					this.modalResponseShow = true;
-				});
+      if(!this.isFormValid()) {
+        return this.showModalValidationForm();
+      }
+      PositionStackService.findPosition(this.formCommerce.address)
+        .then(position => {
+          this.formCommerce.latitude = position.latitude;
+          this.formCommerce.longitude = position.longitude;
+        })
+        .catch(() => {
+          console.log("Sin conexión a Position Stack");
+        })
+        .then(() => {
+          return CommerceService.createCommerce(this.formCommerce);
+        })
+        .then((response) => {
+          this.commerce = response.data;
+          this.modalResponseShow = true;
+          this.modalResponse.title = null;
+          this.modalResponse.msg = "Commercio creado";
+        })
+        .catch((response) => {
+          this.modalResponseShow = true;
+          this.modalResponse.title = "Error";
+          let errors = response.response.data.error;
+          let errorMsg;
+          if(errors) {
+             errors.foreach(error => {
+              errorMsg += this.$t(`Commerce.errors.${error}`) + "</br>";
+            });
+          } else {
+            errorMsg = this.$t(`ModalResponse.error.tryAgain`);
+          }
+          this.modalResponse.msg = errorMsg;
+        })
+    },
+
+    isFormValid() {
+      return this.isDataCommerceValid() && this.isSectorValid() && this.isHoursValid();
+    },
+
+    isDataCommerceValid() {
+      return this.formCommerce.name && this.formCommerce.address && this.formCommerce.phone;
+    },
+
+    isSectorValid() {
+      return this.formCommerce.sectors.length > 0;
+    },
+
+    isHoursValid() {
+      return this.formCommerce.hours.some(hour => hour.day && hour.openAt && hour.closeAt && hour.openToday);
+    },
+
+    showModalValidationForm() {
+      let error = ""
+      if(!this.isDataCommerceValid()) {
+        error += this.$t(`CommerceComp.validations.commerceData`) + " <br/>";
+      }
+      if(!this.isSectorValid()) {
+        error += this.$t(`CommerceComp.validations.sectors`) + " <br/>";
+      }
+      if(!this.isHoursValid()) {
+        error += this.$t(`CommerceComp.validations.hours`) + " <br/>";
+      }
+      this.modalResponseShow = true;
+      this.modalResponse.title = "Advertencia";
+      this.modalResponse.msg = error;
     }
   }
 }

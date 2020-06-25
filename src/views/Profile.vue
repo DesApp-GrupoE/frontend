@@ -4,7 +4,7 @@
       <b-nav-item href="/profile/">
         <font-awesome-icon icon="user-circle" class="mr-1"/><span>{{$t('ProfileView.profile')}}</span>
       </b-nav-item>
-      <b-nav-item href="/commerce">
+      <b-nav-item href="/profile/commerce">
         <font-awesome-icon icon="store" class="mr-1"/><span>{{$t('ProfileView.commerce')}}</span>
       </b-nav-item>
     </b-nav>
