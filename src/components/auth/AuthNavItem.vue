@@ -28,6 +28,10 @@
 				<h5 v-else>{{$t('ShoppingCart.modalError.tryAgain')}}</h5>
 			</b-modal>
 
+			<b-modal v-model="modal2fAShow" title="Escanear QR" ok-only>
+				<qr-code text="https://chart.googleapis.com/chart?chs=200x200&amp;chld=M%7C0&amp;cht=qr&amp;chl=otpauth%3A%2F%2Ftotp%2FDesapp%3Fsecret%3AAA"></qr-code>
+			</b-modal>
+	
 			<SignUpModal ref="SignUp"/>
 		</b-nav-item>
 
@@ -60,6 +64,7 @@ import AuthService from '@/service/auth/AuthService.js';
 import SignUpModal from './SignUpModal.vue';
 import LoggedNavDropdown from './LoggedNavDropdown.vue';
 
+
 export default {
 	name: 'AuthNavItem',
 	components: {
@@ -70,6 +75,8 @@ export default {
 		return {
 			isLogged: false,
 			modalLogin: false,
+			modal2fAShow: false,
+			secretKey: null,
 			form: {
 				email: '',
 				password: ''
@@ -94,9 +101,16 @@ export default {
 			evt.preventDefault(); // Esto evita que se recargue la pagina a causa del submit
 			AuthService.signIn(this.form)
 				.then((response) => {
-					let token = `${response.data.type} ${response.data.token}`;
-					localStorage.setItem('token', token)
-					window.location.reload();
+					if(response.data.secretKey) {
+						this.secretKey = response.data.secretKey;
+						this.modal2fAShow = true;
+						this.modalLogin = false;
+					}
+					else {
+						let token = `${response.data.type} ${response.data.token}`;
+						localStorage.setItem('token', token)
+						window.location.reload();
+					}
 				})
 				.catch(error => {
 					this.modalResponse.title = "Error"
@@ -112,6 +126,11 @@ export default {
 	},
 	mounted() {
 		this.isLogged = AuthService.isLogged();
-	}
+	},
+	computed: {
+    QR_URL() { 
+		return "https://chart.googleapis.com/chart?chs=200x200&amp;chld=M%7C0&amp;cht=qr&amp;chl=otpauth%3A%2F%2Ftotp%2FDesapp%3Fsecret%3" + this.secretKey 
+    }
+  }
 }
 </script>

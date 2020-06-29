@@ -12,6 +12,8 @@ import { faShoppingCart, faTimesCircle, faGlobeAmericas, faUserCircle, faEye, fa
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import '@/assets/css/fonts.css';
 import '@/assets/css/core.css';
+import VueQRCodeComponent from 'vue-qrcode-component'
+Vue.component('qr-code', VueQRCodeComponent)
 
 // Install BootstrapVue
 Vue.use(BootstrapVue)
