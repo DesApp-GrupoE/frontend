@@ -48,7 +48,14 @@ export default {
         "orSignInWith": "Or sign in with"
     },
     "AuthForm": {
-        "signIn": "Sign In"
+        "signIn": "Sign In",
+        "modal2fa": {
+            "title": "Two-Factor Authentication",
+            "scanQRwithApp": "Scan this code QR with app ",
+            "toGetCodeOf2fa": "to get the code of two-factor authentication",
+            "insertValidationCode2fa": "Enter the code from the two-factor authentication",
+            "validate": "Validate"
+        }
     },
     "AuthNavItem": {
         "signIn": "Sign In",

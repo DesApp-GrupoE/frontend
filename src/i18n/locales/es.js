@@ -48,7 +48,14 @@ export default {
         "orSignInWith": "Ó inicia sesión con"
     },
     "AuthForm": {
-        "signIn": "Iniciar Sesión"
+        "signIn": "Iniciar Sesión",
+        "modal2fa": {
+            "title": "Segundo factor de autenticación",
+            "scanQRwithApp": "Escanea este código QR con la aplicación",
+            "toGetCodeOf2fa": "para obtener el código del segundo factor de autenticación",
+            "insertValidationCode2fa": "Ingresá el código de validación del segundo factor de autenticación",
+            "validate": "Validar"
+        }
     },
     "AuthNavItem": {
         "signIn": "Iniciar sesión",

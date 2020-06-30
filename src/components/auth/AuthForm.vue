@@ -16,8 +16,26 @@
     </b-form>
 
     <b-modal v-model="modalResponseShow" :title="modalResponse.title" ok-only>
-      <h5 v-if="modalResponse.msg">{{modalResponse.msg}}</h5>
+			<div v-if="modalResponse.msg">
+				<h5 >{{modalResponse.msg}}</h5>
+				<div></div>
+			</div>
       <h5 v-else>{{$t('ShoppingCart.modalError.tryAgain')}}</h5>
+    </b-modal>
+
+		<b-modal v-model="modal2FaShow" :title="$t('AuthForm.modal2fa.title')" hide-footer size="lg">
+			<p>
+				{{$t('AuthForm.modal2fa.scanQRwithApp')}} <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en" target="_blank">Google Authenticator</a>
+				{{$t('AuthForm.modal2fa.toGetCodeOf2fa')}}
+			</p>
+			<div class="text-center" v-html="modal2Fa.qrHtml"></div>
+			<div class="mt-2 mb-2">
+				<span>{{$t('AuthForm.modal2fa.insertValidationCode2fa')}}</span>
+				<input type="text" class="form-control" v-model="modal2Fa.code">
+			</div>
+			<div class="d-flex justify-content-end">
+				<button class="btn btn-primary" v-on:click="validateCodeQR">{{$t('AuthForm.modal2fa.validate')}}</button>
+			</div>
     </b-modal>
   </div>
 </template>
@@ -35,6 +53,7 @@ export default {
   data() {
 		return {
 			modalLogin: false,
+			modal2FaShow: false,
 			form: {
 				email: '',
 				password: ''
@@ -44,6 +63,10 @@ export default {
 				title: 'Error',
 				msg: null
 			},
+			modal2Fa: {
+				qrHtml: null,
+				code: null
+			}
 		}
 	},
 	methods: {
@@ -51,24 +74,60 @@ export default {
 			evt.preventDefault(); // Esto evita que se recargue la pagina a causa del submit
 			AuthService.signIn(this.form)
 				.then((response) => {
-					let token = `${response.data.type} ${response.data.token}`;
-					localStorage.setItem('token', token)
-					return UserService.getProfile();
+					if(response.data.secretKey) {
+						this.handleAuthSuccessWith2FA(response.data)
+					} else {
+						this.handleAuthSuccessWithToken(response.data);
+					}
 				})
+				.catch(error => {
+					this.handleErrorRequest(error);
+				})
+		},
+
+		handleAuthSuccessWithToken(data) {
+			let token = `${data.type} ${data.token}`;
+			localStorage.setItem('token', token)
+			UserService.getProfile()
 				.then((response) => {
 					let user = response.data;
 					localStorage.setItem('userName', user.name);
 					window.location.href = "/";
 				})
 				.catch(error => {
-					this.modalResponse.title = "Error"
-					if(error.response.data) {
-						this.modalResponse.msg = error.response.data.error;
-					} else {
-						// Set null para que muestre error generico
-						this.modalResponse.msg = null;
-					}
-					this.modalResponseShow = true;
+					this.handleErrorRequest(error);
+				})
+		},
+
+		handleAuthSuccessWith2FA(data) {
+			let urlQR = "https://chart.googleapis.com/chart?chs=200x200&amp;chld=M%7C0&amp;cht=qr&amp;chl=otpauth://totp/DesAppE?secret=" + data.secretKey;
+			let tagImg = `<img src="${urlQR}" alt="QR segundo factor autenticación"/>`
+			this.modal2FaShow = true;
+			this.modal2Fa.qrHtml = tagImg;
+		},
+
+		handleErrorRequest(error) {
+			this.modalResponse.title = "Error"
+			if(error.response && error.response.data) {
+				this.modalResponse.msg = error.response.data.error;
+			} else {
+				// Set null para que muestre error generico
+				this.modalResponse.msg = null;
+			}
+			this.modalResponseShow = true;
+		},
+
+		validateCodeQR() {
+			let json = {
+				email: this.form.email,
+				code: this.modal2Fa.code
+			}
+			AuthService.validateCodeQR(json)
+				.then((response) => {
+					this.handleAuthSuccessWithToken(response.data);
+				})
+				.catch(error => {
+					this.handleErrorRequest(error);
 				})
 		}
 	},
