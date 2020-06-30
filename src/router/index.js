@@ -5,6 +5,7 @@ import i18n from '@/i18n/i18n.js';
 
 import Home from '@/views/Home.vue';
 import Profile from '@/views/Profile.vue';
+import AuthView from '@/components/auth/AuthView.vue';
 import ProfileComponent from '@/components/user/ProfileComponent.vue';
 import CommerceComponent from '@/components/user/CommerceComponent.vue';
 import AbmCommerce from '@/components/user/commerce/AbmCommerce.vue';
@@ -25,6 +26,11 @@ Vue.use(VueRouter)
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/Cart.vue')
+  },
+  {
+    path: '/auth',
+    name: 'AuthView',
+    component: AuthView
   },
   {
     path: '/profile',

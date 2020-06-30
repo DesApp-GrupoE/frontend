@@ -44,6 +44,12 @@ export default {
             "tryAgain": "Ha ocurrido un error. Por favor, intente de nuevo"
         }
     },
+    "AuthView": {
+        "orSignInWith": "Ó inicia sesión con"
+    },
+    "AuthForm": {
+        "signIn": "Iniciar Sesión"
+    },
     "AuthNavItem": {
         "signIn": "Iniciar sesión",
         "formOfSignIn": "Formulario de inicio de sesión",

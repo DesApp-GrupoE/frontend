@@ -44,6 +44,12 @@ export default {
             "tryAgain": "An error has occurred. Please, try again"
         }
     },
+    "AuthView": {
+        "orSignInWith": "Or sign in with"
+    },
+    "AuthForm": {
+        "signIn": "Sign In"
+    },
     "AuthNavItem": {
         "signIn": "Sign In",
         "formOfSignIn": "Form of sign in",

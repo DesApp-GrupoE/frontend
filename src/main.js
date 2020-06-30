@@ -11,6 +11,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faShoppingCart, faTimesCircle, faGlobeAmericas, faHome,
   faUserCircle, faEye, faBars, faStore, faShoppingBasket, faClock
 } from '@fortawesome/free-solid-svg-icons'
+import { faGoogle } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import '@/assets/css/fonts.css';
 import '@/assets/css/core.css';
@@ -19,7 +20,7 @@ import '@/assets/css/core.css';
 Vue.use(BootstrapVue)
 // Install Font-Awesome
 library.add(faShoppingCart, faTimesCircle, faGlobeAmericas, faUserCircle, 
-  faEye, faBars, faStore, faShoppingBasket, faClock, faHome)
+  faEye, faBars, faStore, faShoppingBasket, faClock, faHome, faGoogle)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false
