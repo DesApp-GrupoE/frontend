@@ -73,7 +73,8 @@ export default {
         "email": "Email",
         "password": "Password",
         "signUp": "Sign Up",
-        "successfullySignUp": "You have signed up successfully"
+        "successfullySignUp": "You have signed up successfully",
+        "enable2faQuestion": "Do you want to enable two-factor authentication?"
     },
     "LoggedNavDropdown": {
         "welcome": "Welcome",

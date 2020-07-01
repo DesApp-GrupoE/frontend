@@ -73,7 +73,8 @@ export default {
         "email": "Email",
         "password": "Password",
         "signUp": "Registrate",
-        "successfullySignUp": "Te has registrado exitosamente"
+        "successfullySignUp": "Te has registrado exitosamente",
+        "enable2faQuestion": "¿Desea habilitar segundo factor de autenticación?"
     },
     "LoggedNavDropdown": {
         "welcome": "Bienvenida/o",

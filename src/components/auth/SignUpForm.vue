@@ -18,9 +18,12 @@
 				<b-form-input id="form-sign-up-password" class="mb-2"
 					:placeholder="$t('SignUpModal.password')" v-model="form.password" type="password" required >
 				</b-form-input>
+				<div class="d-flex justify-content-center">
+					<span><input type="checkbox" v-model="form.auth2fa"> {{$t('SignUpModal.enable2faQuestion')}}</span>
+				</div>
 			</div>
 
-			<div class="d-flex justify-content-center">
+			<div class="d-flex justify-content-center pt-2 pb-2">
 				<b-button type="submit" variant="primary">{{$t('SignUpModal.signUp')}}</b-button>
 			</div>
 		</b-form>
@@ -48,7 +51,8 @@ export default {
 				name: '',
 				surname: '',
 				email: '',
-				password: ''
+				password: '',
+				auth2fa: false
 			},
 		}
 	},
@@ -72,7 +76,16 @@ export default {
 				})
 				.then(() => {
 					this.modalResponseShow = true;
+					this.resetForm();
 				});
+		},
+
+		resetForm() {
+			this.form.name = '';
+			this.form.surname = '';
+			this.form.email = '';
+			this.form.password = '';
+			this.form.auth2fa = false;
 		}
 	}
 }
