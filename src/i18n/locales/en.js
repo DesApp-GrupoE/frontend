@@ -74,7 +74,8 @@ export default {
         "password": "Password",
         "signUp": "Sign Up",
         "successfullySignUp": "You have signed up successfully",
-        "enable2faQuestion": "Do you want to enable two-factor authentication?"
+        "enable2faQuestion": "Do you want to enable two-factor authentication?",
+        "passwordValidationMsg": "You must enter at least 8 characters with a uppercase letter, a lowercase letter and a number"
     },
     "LoggedNavDropdown": {
         "welcome": "Welcome",

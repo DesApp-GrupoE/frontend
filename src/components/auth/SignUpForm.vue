@@ -15,10 +15,14 @@
 					:placeholder="$t('SignUpModal.email')" v-model="form.email" type="email" required >
 				</b-form-input>
 
-				<b-form-input id="form-sign-up-password" class="mb-2"
-					:placeholder="$t('SignUpModal.password')" v-model="form.password" type="password" required >
+				<b-form-input id="form-sign-up-password" :state="passwordState" aria-describedby="form-sign-up-password-feedback"
+						:placeholder="$t('SignUpModal.password')" v-model="form.password" type="password" required >
 				</b-form-input>
-				<div class="d-flex justify-content-center">
+				<b-form-invalid-feedback id="form-sign-up-password-feedback">
+					{{$t('SignUpModal.passwordValidationMsg')}}
+				</b-form-invalid-feedback>
+
+				<div class="d-flex justify-content-center mt-2">
 					<span><input type="checkbox" v-model="form.auth2fa"> {{$t('SignUpModal.enable2faQuestion')}}</span>
 				</div>
 			</div>
@@ -51,7 +55,7 @@ export default {
 				name: '',
 				surname: '',
 				email: '',
-				password: '',
+				password: null,
 				auth2fa: false
 			},
 		}
@@ -84,8 +88,19 @@ export default {
 			this.form.name = '';
 			this.form.surname = '';
 			this.form.email = '';
-			this.form.password = '';
+			this.form.password = null;
 			this.form.auth2fa = false;
+		}
+	},
+
+	computed: {
+		passwordState() {
+			if(this.form.password == null) {
+				return undefined;
+			}
+			// Regex para validar que al menos exista una mayuscula, una minuscula, un número y 8 caracteres
+			const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
+			return regex.test(this.form.password);
 		}
 	}
 }

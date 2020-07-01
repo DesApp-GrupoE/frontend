@@ -74,7 +74,8 @@ export default {
         "password": "Password",
         "signUp": "Registrate",
         "successfullySignUp": "Te has registrado exitosamente",
-        "enable2faQuestion": "¿Desea habilitar segundo factor de autenticación?"
+        "enable2faQuestion": "¿Desea habilitar segundo factor de autenticación?",
+        "passwordValidationMsg": "Debe ingresar al menos 8 caracteres con una letra minúscula, una mayúscula y un número"
     },
     "LoggedNavDropdown": {
         "welcome": "Bienvenida/o",
