@@ -17,7 +17,7 @@
 			<div class="row d-flex justify-content-center align-items-center text-center">
 				<div class="col-4">$ {{product.price}}</div>
 				<div class="col-3 padding-left-0">
-					<input class="form-control" v-numeric-pos-only v-model="product.quantity" v-on:change="updateQuantityProduct()">
+					<input class="form-control" v-number-pos-only v-model="product.quantity" v-on:change="updateQuantityProduct()">
 				</div>
 				<div class="col-3">$ {{calculateSubTotal}}</div>
 				<div class="col-2 d-flex justify-content-end">

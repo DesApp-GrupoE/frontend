@@ -48,7 +48,7 @@
 
           <b-form-input id="form-stock" class="mb-2"
             :placeholder="$t('CommerceComp.product.stock')" v-model="formProduct.stock" type="text" 
-            v-numeric-pos-only required >
+            v-number-pos-only required >
           </b-form-input>
 
           <b-form-input id="form-img" class="mb-2"

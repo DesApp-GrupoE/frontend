@@ -35,9 +35,23 @@
             :placeholder="$t('CommerceComp.form.address')" v-model="formCommerce.address" type="text" required >
           </b-form-input>
 
-          <b-form-input id="form-price" class="mb-2 mt-1"
+          <b-form-input id="form-phone" class="mb-2 mt-1"
             :placeholder="$t('CommerceComp.form.phone')" v-model="formCommerce.phone" type="text" required >
           </b-form-input>
+        </div>
+        <div class="d-flex flex-wrap align-items-center mt-2">
+          <div class="col-12 col-sm-3 pl-0">
+            <span class="pr-2">
+              <input type="checkbox" v-model="formCommerce.doDelivery" @change="changeDoDelivery($event)" > {{$t('CommerceComp.form.doDelivery')}}
+            </span>
+          </div>
+          <div class="col-12 col-sm-4 pl-0 d-flex align-items-center">
+            <b-form-input id="form-delivery-up" class="mb-2 mr-2" style="width: 90%" 
+              :disabled="!formCommerce.doDelivery"
+              :placeholder="$t('CommerceComp.form.deliveryUp')" v-model="formCommerce.deliveryUp" type="number">
+            </b-form-input>
+            <span>Km</span>
+          </div>
         </div>
         <div class="mt-2">
           <span class="bold">{{$t('CommerceComp.sectors')}}</span>
@@ -129,6 +143,8 @@ export default {
         address: null,
         latitude: 0.0,
         longitude: 0.0,
+        doDelivery: false,
+        deliveryUp: null,
         sectors: [],
         hours: [
           { day: 'Monday', openAt: null, closeAt: null, openToday: false },
@@ -177,6 +193,7 @@ export default {
           console.log("Sin conexión a Position Stack");
         })
         .then(() => {
+          this.formCommerce.deliveryUp = Number(this.formCommerce.deliveryUp);
           return CommerceService.createCommerce(this.formCommerce);
         })
         .then((response) => {
@@ -202,7 +219,8 @@ export default {
     },
 
     isFormValid() {
-      return this.isDataCommerceValid() && this.isSectorValid() && this.isHoursValid();
+      return this.isDataCommerceValid() && this.isSectorValid() 
+        && this.isHoursValid() && this.isDeliveryUpValid();
     },
 
     isDataCommerceValid() {
@@ -217,6 +235,11 @@ export default {
       return this.formCommerce.hours.some(hour => hour.day && hour.openAt && hour.closeAt && hour.openToday);
     },
 
+    isDeliveryUpValid() {
+      let deliveryUp = Number(this.formCommerce.deliveryUp);
+      return !this.formCommerce.doDelivery || (this.formCommerce.doDelivery && !isNaN(deliveryUp))
+    },
+
     showModalValidationForm() {
       let error = ""
       if(!this.isDataCommerceValid()) {
@@ -225,12 +248,21 @@ export default {
       if(!this.isSectorValid()) {
         error += this.$t(`CommerceComp.validations.sectors`) + " <br/>";
       }
+      if(!this.isDeliveryUpValid()) {
+        error += this.$t(`CommerceComp.validations.hours`) + " <br/>";
+      }
       if(!this.isHoursValid()) {
         error += this.$t(`CommerceComp.validations.hours`) + " <br/>";
       }
       this.modalResponseShow = true;
       this.modalResponse.title = "Advertencia";
       this.modalResponse.msg = error;
+    },
+
+    changeDoDelivery(event) {
+      if(!event.target.checked) {
+        this.formCommerce.deliveryUp = null;
+      }
     }
   }
 }

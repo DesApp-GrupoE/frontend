@@ -138,6 +138,8 @@ export default {
             "name": "Nombre",
             "address": "Dirección",
             "phone": "Teléfono",
+            "doDelivery": "Realiza envíos",
+            "deliveryUp": "Envíos hasta",
             "hours": {
                 "hours": "Horarios",
                 "day": "Día",
@@ -155,6 +157,12 @@ export default {
                 }
             },
             "createCommerce": "Crear comercio"
+        },
+        "validations": {
+            "commerceData": "Debes completar los datos del comercio.",
+            "sectors": "Debes seleccionar al menos un rubro.",
+            "hours": "Debes cargar al menos un horario de atención.",
+            "deliveryUp": "Debes completar el campo de entrega hasta"
         },
         "products": "Productos",
         "createProduct": "Crear producto",

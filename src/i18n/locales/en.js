@@ -138,6 +138,8 @@ export default {
             "name": "Name",
             "address": "Address",
             "phone": "Phone",
+            "doDelivery": "Do delivery",
+            "deliveryUp": "Delivery up",
             "hours": {
                 "hours": "Hours",
                 "day": "Day",
@@ -159,7 +161,8 @@ export default {
         "validations": {
             "commerceData": "You must complete commerce data.",
             "sectors": "You must select at least one sector.",
-            "hours": "You must load at least one attention hour."
+            "hours": "You must load at least one attention hour.",
+            "deliveryUp": "You must complete delivery up"
         },
         "products": "Products",
         "createProduct": "Create Product",

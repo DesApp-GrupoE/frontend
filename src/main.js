@@ -35,7 +35,7 @@ new Vue({
   }
 }).$mount('#app')
 
-Vue.directive('numeric-pos-only', {
+Vue.directive('number-pos-only', {
   bind(el) {
     el.addEventListener('keyup', () => {
       let regex = /^[0-9]*$/
