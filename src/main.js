@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import axios from 'axios';
 import store from './store'
 import i18n from './i18n/i18n.js'
 
@@ -18,6 +17,7 @@ import '@/assets/css/fonts.css';
 import '@/assets/css/core.css';
 import VueCtkDateTimePicker from 'vue-ctk-date-time-picker';
 import 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css';
+import api from "./service/api";
 
 // Install BootstrapVue
 Vue.use(BootstrapVue)
@@ -30,6 +30,7 @@ Vue.use(require('vue-moment'));
 Vue.component('VueCtkDateTimePicker', VueCtkDateTimePicker);
 
 Vue.config.productionTip = false
+Vue.prototype.$http = api;
 
 new Vue({
   router,
@@ -51,15 +52,3 @@ Vue.directive('number-pos-only', {
     })
   }
 })
-
-axios.interceptors.response.use((response) => {
-  // do something with the response data
-  console.log('Response was received');
-
-  return response;
-}, error => {
-  console.log('Response error was received');
-  console.log(error);
-  // handle the response error
-  return Promise.reject(error);
-});

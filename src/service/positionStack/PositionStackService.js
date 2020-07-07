@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from '../api';
 
 class PositionStackService {
 
@@ -15,7 +15,7 @@ class PositionStackService {
             query: address,
             limit: 1
         }
-        return axios.get('http://api.positionstack.com/v1/forward', {params})
+        return api.get('http://api.positionstack.com/v1/forward', {params})
             .then(response => {
                 this.positionMap[keyAddress] = response.data.data[0];
                 return Promise.resolve(response.data.data[0]);

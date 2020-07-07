@@ -1,9 +1,9 @@
-import axios from 'axios';
+import api from '../api';
 
 class CommerceService {
 
     getSectors() {
-        return axios.get(`${process.env.VUE_APP_DESAPP_ROOT_API}/commerce-sector`)  
+        return api.get(`${process.env.VUE_APP_DESAPP_ROOT_API}/commerce-sector`)
     }
 
     getCommerce() {
@@ -13,7 +13,7 @@ class CommerceService {
               'Authorization': localStorage.getItem('token'),
           }
       }         
-      return axios.get(`${process.env.VUE_APP_DESAPP_ROOT_API}/user/${userId}/commerce`, config)
+      return api.get(`${process.env.VUE_APP_DESAPP_ROOT_API}/user/${userId}/commerce`, config)
     }
 
     createCommerce(json) {
@@ -23,7 +23,7 @@ class CommerceService {
                 'Authorization': localStorage.getItem('token'),
             }
         }
-        return axios.post(`${process.env.VUE_APP_DESAPP_ROOT_API}/user/${userId}/commerce`, json, config)
+        return api.post(`${process.env.VUE_APP_DESAPP_ROOT_API}/user/${userId}/commerce`, json, config)
     }
 }
 

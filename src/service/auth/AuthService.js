@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from '../api';
 
 class AuthService {
 
@@ -7,11 +7,11 @@ class AuthService {
     }
 
     signUp(json) {
-        return axios.post(`${process.env.VUE_APP_DESAPP_ROOT_API}/auth/sign-up`, json)
+        return api.post(`${process.env.VUE_APP_DESAPP_ROOT_API}/auth/sign-up`, json)
     }
 
     signIn(json) {
-        return axios.post(`${process.env.VUE_APP_DESAPP_ROOT_API}/auth/login`, json)
+        return api.post(`${process.env.VUE_APP_DESAPP_ROOT_API}/auth/login`, json)
     }
 
     logout() {
@@ -20,11 +20,11 @@ class AuthService {
                 'Authorization': localStorage.getItem('token'),
             }
         }          
-        return axios.post(`${process.env.VUE_APP_DESAPP_ROOT_API}/auth/logout`, null, config)
+        return api.post(`${process.env.VUE_APP_DESAPP_ROOT_API}/auth/logout`, null, config)
     }
 
     validateCodeQR(json) {
-        return axios.post(`${process.env.VUE_APP_DESAPP_ROOT_API}/auth/code-otp`, json)
+        return api.post(`${process.env.VUE_APP_DESAPP_ROOT_API}/auth/code-otp`, json)
     }
 }
 

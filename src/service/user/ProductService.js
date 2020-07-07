@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from '../api';
 
 class ProductService {
 
@@ -8,7 +8,7 @@ class ProductService {
               'Authorization': localStorage.getItem('token'),
           }
       }          
-      return axios.get(`${process.env.VUE_APP_DESAPP_ROOT_API}/commerce/${commerceId}/product`, config)
+      return api.get(`${process.env.VUE_APP_DESAPP_ROOT_API}/commerce/${commerceId}/product`, config)
     }
 
     removeProduct(commerceId, productId) {
@@ -17,7 +17,7 @@ class ProductService {
             'Authorization': localStorage.getItem('token'),
         }
       }          
-      return axios.delete(`${process.env.VUE_APP_DESAPP_ROOT_API}/commerce/${commerceId}/product/${productId}`, config)
+      return api.delete(`${process.env.VUE_APP_DESAPP_ROOT_API}/commerce/${commerceId}/product/${productId}`, config)
     }
 
     createProduct(commerceId, json) {
@@ -26,7 +26,7 @@ class ProductService {
             'Authorization': localStorage.getItem('token'),
         }
       }          
-      return axios.post(`${process.env.VUE_APP_DESAPP_ROOT_API}/commerce/${commerceId}/product/`, json, config)
+      return api.post(`${process.env.VUE_APP_DESAPP_ROOT_API}/commerce/${commerceId}/product/`, json, config)
     }
 }
 

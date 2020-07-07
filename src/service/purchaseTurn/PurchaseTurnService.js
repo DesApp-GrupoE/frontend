@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from '../api';
 
 class PurchaseServiceTurn {
 
@@ -8,7 +8,7 @@ class PurchaseServiceTurn {
             'Authorization': localStorage.getItem('token'),
           }
         }
-      return axios.get(`${process.env.VUE_APP_DESAPP_ROOT_API}/purchase-turn?commerceId=${commerceId}`, config);
+      return api.get(`${process.env.VUE_APP_DESAPP_ROOT_API}/purchase-turn?commerceId=${commerceId}`, config);
     }
 
     createTurn(json) {
@@ -17,7 +17,7 @@ class PurchaseServiceTurn {
             'Authorization': localStorage.getItem('token'),
           }
         }
-      return axios.post(`${process.env.VUE_APP_DESAPP_ROOT_API}/purchase-turn`, json, config);
+      return api.post(`${process.env.VUE_APP_DESAPP_ROOT_API}/purchase-turn`, json, config);
     }
 }
 

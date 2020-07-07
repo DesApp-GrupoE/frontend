@@ -1,4 +1,7 @@
 export default {
+    "Auth": {
+        "sessionExpired": "Tu sesión ha finalizado. Por favor, inicie de nuevo."
+    },
     "Language": "Idioma",
     "lang": {
         "es": "Español",

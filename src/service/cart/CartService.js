@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from '../api';
 
 const KEY_CART = 'KEY_CART';
 
@@ -16,7 +16,7 @@ class CartService {
     getShoppingCart() {
         return this.getKeyCart()
             .then(keyCart => {
-                return axios.get(`${process.env.VUE_APP_DESAPP_ROOT_API}/cart/${keyCart}`)
+                return api.get(`${process.env.VUE_APP_DESAPP_ROOT_API}/cart/${keyCart}`)
             })
     }
 
@@ -36,7 +36,7 @@ class CartService {
     }
 
     createShoppingCart() {
-        return axios.post(`${process.env.VUE_APP_DESAPP_ROOT_API}/cart`);
+        return api.post(`${process.env.VUE_APP_DESAPP_ROOT_API}/cart`);
     }
 
     addProductToCart(productId) {
@@ -46,14 +46,14 @@ class CartService {
         }
         return this.getKeyCart()
             .then(keyCart => {
-                return axios.post(`${process.env.VUE_APP_DESAPP_ROOT_API}/cart/${keyCart}/product`, json);
+                return api.post(`${process.env.VUE_APP_DESAPP_ROOT_API}/cart/${keyCart}/product`, json);
             })
     }
 
     removeProductById(idProduct) {
         return this.getKeyCart()
             .then(keyCart => {
-                return axios.delete(`${process.env.VUE_APP_DESAPP_ROOT_API}/cart/${keyCart}/product/${idProduct}`);
+                return api.delete(`${process.env.VUE_APP_DESAPP_ROOT_API}/cart/${keyCart}/product/${idProduct}`);
             })
     }
 
@@ -64,7 +64,7 @@ class CartService {
         }
         return this.getKeyCart()
             .then(keyCart => {
-                return axios.put(`${process.env.VUE_APP_DESAPP_ROOT_API}/cart/${keyCart}/product`, json);
+                return api.put(`${process.env.VUE_APP_DESAPP_ROOT_API}/cart/${keyCart}/product`, json);
             })
     }
 }
