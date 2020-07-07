@@ -2,14 +2,14 @@
   <div class="d-flex panel-home">
     <b-nav id="nav" vertical class="col-2 sidebar">
       <b-nav-item href="/profile/">
-        <font-awesome-icon icon="user-circle" class="mr-1"/><span>{{$t('ProfileView.profile')}}</span>
+        <font-awesome-icon icon="user-circle" class="mr-1"/><span class="hide-xs">{{$t('ProfileView.profile')}}</span>
       </b-nav-item>
       <b-nav-item href="/profile/commerce">
-        <font-awesome-icon icon="store" class="mr-1"/><span>{{$t('ProfileView.commerce')}}</span>
+        <font-awesome-icon icon="store" class="mr-1"/><span class="hide-xs">{{$t('ProfileView.commerce')}}</span>
       </b-nav-item>
     </b-nav>
 
-    <div class="col-10">
+    <div class="col-10 pr-0 pl-2">
       <router-view></router-view>
     </div>
   </div>
@@ -35,6 +35,11 @@
   text-decoration: underline;
 }
 
+@media screen and (max-width:576px){
+	.hide-xs {
+		display: none;
+	}
+}
 </style>
 
 <script>

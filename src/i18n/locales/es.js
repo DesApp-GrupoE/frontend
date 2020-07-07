@@ -178,6 +178,20 @@ export default {
             "productCreated": "Producto creado"
         }
     },
+    "CreatePurchaseTurn": {
+        "createTurn": "Crear Turno",
+        "create": "Crear",
+        "turnCreated": "Turno creado"
+    },
+    "PurchaseTurnSearcher": {
+        "dateFrom": "Fecha desde",
+        "dateTo": "Fecha hasta",
+        "searchTurns": "Buscar turnos"
+    },
+    "TypeDelivery": {
+        "ON_COMMERCE": "Retiro por local",
+        "TO_ADDRESS": "Envío a domicilio"
+    },
     "AbmCommerce": {
         "name": "Nombre",
         "address": "Dirección",

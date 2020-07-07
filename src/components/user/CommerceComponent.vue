@@ -11,6 +11,9 @@
         <b-nav-item href="/profile/commerce/hours" class="m-1">
           <font-awesome-icon icon="clock" class="mr-1"/><span>Horarios</span>
         </b-nav-item>
+        <b-nav-item href="/profile/commerce/turns" class="m-1">
+          <font-awesome-icon icon="calendar-alt" class="mr-1"/><span>Turnos</span>
+        </b-nav-item>
       </b-nav>
       
       <div class="p-2">

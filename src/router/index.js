@@ -10,6 +10,7 @@ import ProfileComponent from '@/components/user/ProfileComponent.vue';
 import CommerceComponent from '@/components/user/CommerceComponent.vue';
 import AbmCommerce from '@/components/user/commerce/AbmCommerce.vue';
 import AbmProducts from '@/components/user/commerce/AbmProducts.vue';
+import AbmPurchaseTurn from '@/components/user/commerce/turns/AbmPurchaseTurn.vue';
 
 Vue.use(VueRouter)
 
@@ -59,6 +60,11 @@ Vue.use(VueRouter)
             path: '/profile/commerce/products',
             name: 'AbmProducts',
             component: AbmProducts
+          },
+          {
+            path: '/profile/commerce/turns',
+            name: 'AbmPurchaseTurn',
+            component: AbmPurchaseTurn
           }
         ]
       }

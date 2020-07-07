@@ -178,6 +178,20 @@ export default {
             "productCreated": "Product created"
         }
     },
+    "CreatePurchaseTurn": {
+        "createTurn": "Create Turn",
+        "create": "Create",
+        "turnCreated": "Turn created"
+    },
+    "PurchaseTurnSearcher": {
+        "dateFrom": "Date from",
+        "dateTo": "Date to",
+        "searchTurns": "Search turns"
+    },
+    "TypeDelivery": {
+        "ON_COMMERCE": "Take away",
+        "TO_ADDRESS": "Delivery"
+    },
     "AbmCommerce": {
         "name": "Name",
         "address": "Address",
