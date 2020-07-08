@@ -23,19 +23,16 @@
       <h5 v-else>{{$t('ShoppingCart.modalError.tryAgain')}}</h5>
     </b-modal>
 
-		<b-modal v-model="modal2FaShow" :title="$t('AuthForm.modal2fa.title')" hide-footer size="lg">
-			<p>
-				{{$t('AuthForm.modal2fa.scanQRwithApp')}} <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en" target="_blank">Google Authenticator</a>
-				{{$t('AuthForm.modal2fa.toGetCodeOf2fa')}}
-			</p>
-			<div class="text-center" v-html="modal2Fa.qrHtml"></div>
-			<div class="mt-2 mb-2">
-				<span>{{$t('AuthForm.modal2fa.insertValidationCode2fa')}}</span>
-				<input type="text" class="form-control" v-model="modal2Fa.code">
-			</div>
-			<div class="d-flex justify-content-end">
-				<button class="btn btn-primary" v-on:click="validateCodeQR">{{$t('AuthForm.modal2fa.validate')}}</button>
-			</div>
+		<b-modal v-model="modal2FaShow" :title="$t('AuthForm.modal2fa.title')" hide-footer>
+			<b-form @submit="validateCodeQR">
+				<div class="mb-2">
+					<span>{{$t('AuthForm.modal2fa.insertValidationCode2fa')}}</span>
+					<b-form-input id="form-sign-in-code-2fa" v-model="modal2Fa.code" type="text" required />
+				</div>
+				<div class="d-flex justify-content-end">
+					<button class="btn btn-primary">{{$t('AuthForm.modal2fa.validate')}}</button>
+				</div>
+			</b-form>
     </b-modal>
   </div>
 </template>
@@ -74,8 +71,8 @@ export default {
 			evt.preventDefault(); // Esto evita que se recargue la pagina a causa del submit
 			AuthService.signIn(this.form)
 				.then((response) => {
-					if(response.data.secretKey) {
-						this.handleAuthSuccessWith2FA(response.data)
+					if(response.data.authWith2fa) {
+						this.handleAuthSuccessWith2FA()
 					} else {
 						this.handleAuthSuccessWithToken(response.data);
 					}
@@ -99,11 +96,8 @@ export default {
 				})
 		},
 
-		handleAuthSuccessWith2FA(data) {
-			let urlQR = "https://chart.googleapis.com/chart?chs=200x200&amp;chld=M%7C0&amp;cht=qr&amp;chl=otpauth://totp/DesAppE?secret=" + data.secretKey;
-			let tagImg = `<img src="${urlQR}" alt="QR segundo factor autenticación"/>`
+		handleAuthSuccessWith2FA() {
 			this.modal2FaShow = true;
-			this.modal2Fa.qrHtml = tagImg;
 		},
 
 		handleErrorRequest(error) {
@@ -117,7 +111,8 @@ export default {
 			this.modalResponseShow = true;
 		},
 
-		validateCodeQR() {
+		validateCodeQR(event) {
+			event.preventDefault();
 			let json = {
 				email: this.form.email,
 				code: this.modal2Fa.code

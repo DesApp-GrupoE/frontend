@@ -1,5 +1,8 @@
 <template>
   <div class="panel-profile" v-if="user">
+    <b-alert class="color-black" :show="!user.auth2fa" dismissible>
+      {{$t('ProfileComp.auth2FaInfo')}} <a class="alert-link" href="/profile/settings">{{$t('ProfileComp.settings')}}</a>
+    </b-alert>
     {{$t('ProfileComp.name')}}: {{user.name}} <br/>
     {{$t('ProfileComp.surname')}}: {{user.surname}} <br/>
     {{$t('ProfileComp.email')}}: {{user.email}} <br/>
@@ -10,6 +13,10 @@
 .panel-profile {
 	padding: 10px;
 	background-color: #fff;
+}
+
+.alert-link {
+  color: inherit !important;
 }
 </style>
 

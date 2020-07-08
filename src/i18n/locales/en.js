@@ -56,7 +56,7 @@ export default {
             "title": "Two-Factor Authentication",
             "scanQRwithApp": "Scan this code QR with app ",
             "toGetCodeOf2fa": "to get the code of two-factor authentication",
-            "insertValidationCode2fa": "Enter the code from the two-factor authentication",
+            "insertValidationCode2fa": "Enter the code from the two-factor authentication. Remember open the application to see it.",
             "validate": "Validate"
         }
     },
@@ -87,12 +87,23 @@ export default {
     },
     "ProfileView": {
         "profile": "Profile",
-        "commerce": "Commerce"
+        "commerce": "Commerce",
+        "settings": "Settings"
     },
     "ProfileComp": {
         "name": "Name",
         "surname": "Surname",
-        "email": "Email"
+        "email": "Email",
+        "auth2FaInfo": "If you don't have two-factor authentication, you can enable in",
+        "settings": "Settings"
+    },
+    "ProfileSettings": {
+        "settings": "Settings",
+        "twoFactorAuthentication": "Two-Factor Authentication",
+        "save": "Save",
+        "seeQR": "See QR",
+        "msg2faEnabled": "Two-Factor Authentication was enabled. Please, do click in button 'See QR' to get two-factor authentication code.",
+        "msg2faDisabled": "Two-Factor Authentication was disabled"
     },
     "Commerce": {
         "sector": {

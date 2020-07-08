@@ -56,7 +56,7 @@ export default {
             "title": "Segundo factor de autenticación",
             "scanQRwithApp": "Escanea este código QR con la aplicación",
             "toGetCodeOf2fa": "para obtener el código del segundo factor de autenticación",
-            "insertValidationCode2fa": "Ingresá el código de validación del segundo factor de autenticación",
+            "insertValidationCode2fa": "Ingresá el código de validación del segundo factor de autenticación. Recuerda abrir la aplicación para verlo.",
             "validate": "Validar"
         }
     },
@@ -87,12 +87,23 @@ export default {
     },
     "ProfileView": {
         "profile": "Perfil",
-        "commerce": "Comercio"
+        "commerce": "Comercio",
+        "settings": "Configuraciones"
     },
     "ProfileComp": {
         "name": "Nombre",
         "surname": "Apellido",
-        "email": "Email"
+        "email": "Email",
+        "auth2FaInfo": "Si no tienes el factor de doble autenticación puedes habilitarlo en",
+        "settings": "Configuraciones"
+    },
+    "ProfileSettings": {
+        "settings": "Configuraciones",
+        "twoFactorAuthentication": "Doble factor de autenticación",
+        "save": "Guardar",
+        "seeQR": "Ver QR",
+        "msg2faEnabled": "El segundo factor de autenticación fue activado. Por favor, clickee en el botón 'Ver QR' para obtener el código del segundo factor de autenticación.",
+        "msg2faDisabled": "El segundo factor de autenticación fue deshabilitado"
     },
     "Commerce": {
         "sector": {

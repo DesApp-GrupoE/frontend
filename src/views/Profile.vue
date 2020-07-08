@@ -7,6 +7,9 @@
       <b-nav-item href="/profile/commerce">
         <font-awesome-icon icon="store" class="mr-1"/><span class="hide-xs">{{$t('ProfileView.commerce')}}</span>
       </b-nav-item>
+      <b-nav-item href="/profile/settings">
+        <font-awesome-icon icon="cog" class="mr-1"/><span class="hide-xs">{{$t('ProfileView.settings')}}</span>
+      </b-nav-item>
     </b-nav>
 
     <div class="col-10 pr-0 pl-2">
@@ -29,6 +32,7 @@
 
 .sidebar > li > a {
   color: #fff;
+  padding-right: 0;
 }
 
 .sidebar > li:hover {

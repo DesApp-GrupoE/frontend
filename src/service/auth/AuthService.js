@@ -15,16 +15,31 @@ class AuthService {
     }
 
     logout() {
-        let config = {
-            headers: {
-                'Authorization': localStorage.getItem('token'),
-            }
-        }          
-        return api.post(`${process.env.VUE_APP_DESAPP_ROOT_API}/auth/logout`, null, config)
+        return api.post(`${process.env.VUE_APP_DESAPP_ROOT_API}/auth/logout`, null, this.headerSecured())
     }
 
     validateCodeQR(json) {
         return api.post(`${process.env.VUE_APP_DESAPP_ROOT_API}/auth/code-otp`, json)
+    }
+
+    getSecret() {
+        return api.get(`${process.env.VUE_APP_DESAPP_ROOT_API}/auth/2fa`, this.headerSecured())
+    }
+
+    enable2FA() {
+        return api.post(`${process.env.VUE_APP_DESAPP_ROOT_API}/auth/2fa/enabled`, null, this.headerSecured())
+    }
+
+    disable2FA() {
+        return api.post(`${process.env.VUE_APP_DESAPP_ROOT_API}/auth/2fa/disabled`, null, this.headerSecured())
+    }
+
+    headerSecured() {
+        return {
+            headers: {
+                'Authorization': localStorage.getItem('token'),
+            }
+        }
     }
 }
 

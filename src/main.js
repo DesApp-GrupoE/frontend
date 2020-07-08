@@ -8,7 +8,7 @@ import { BootstrapVue } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faShoppingCart, faTimesCircle, faGlobeAmericas, faHome,
+import { faShoppingCart, faTimesCircle, faGlobeAmericas, faHome, faCog,
   faUserCircle, faEye, faBars, faStore, faShoppingBasket, faClock, faCalendarAlt
 } from '@fortawesome/free-solid-svg-icons'
 import { faGoogle } from '@fortawesome/free-brands-svg-icons'
@@ -22,7 +22,7 @@ import api from "./service/api";
 // Install BootstrapVue
 Vue.use(BootstrapVue)
 // Install Font-Awesome
-library.add(faShoppingCart, faTimesCircle, faGlobeAmericas, faUserCircle, 
+library.add(faShoppingCart, faTimesCircle, faGlobeAmericas, faUserCircle, faCog,
   faEye, faBars, faStore, faShoppingBasket, faClock, faHome, faGoogle, faCalendarAlt)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 

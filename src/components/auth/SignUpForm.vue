@@ -21,10 +21,6 @@
 				<b-form-invalid-feedback id="form-sign-up-password-feedback">
 					{{$t('SignUpModal.passwordValidationMsg')}}
 				</b-form-invalid-feedback>
-
-				<div class="d-flex justify-content-center mt-2">
-					<span><input type="checkbox" v-model="form.auth2fa"> {{$t('SignUpModal.enable2faQuestion')}}</span>
-				</div>
 			</div>
 
 			<div class="d-flex justify-content-center pt-2 pb-2">
@@ -55,8 +51,7 @@ export default {
 				name: '',
 				surname: '',
 				email: '',
-				password: null,
-				auth2fa: false
+				password: null
 			},
 		}
 	},
@@ -89,7 +84,6 @@ export default {
 			this.form.surname = '';
 			this.form.email = '';
 			this.form.password = null;
-			this.form.auth2fa = false;
 		}
 	},
 

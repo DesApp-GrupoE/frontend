@@ -11,6 +11,7 @@ import CommerceComponent from '@/components/user/CommerceComponent.vue';
 import AbmCommerce from '@/components/user/commerce/AbmCommerce.vue';
 import AbmProducts from '@/components/user/commerce/AbmProducts.vue';
 import AbmPurchaseTurn from '@/components/user/commerce/turns/AbmPurchaseTurn.vue';
+import SettingsComponent from '@/components/user/settings/SettingsComponent.vue';
 
 Vue.use(VueRouter)
 
@@ -67,7 +68,12 @@ Vue.use(VueRouter)
             component: AbmPurchaseTurn
           }
         ]
-      }
+      },
+      {
+        path: '/profile/settings',
+        name: 'SettingsComponent',
+        component: SettingsComponent
+      },
     ]
   }
 ]
