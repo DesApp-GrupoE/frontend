@@ -51,6 +51,7 @@ export default {
         "orSignInWith": "Ó inicia sesión con"
     },
     "AuthForm": {
+        "errorOnLogin": "Tu email o password es incorrecto",
         "signIn": "Iniciar Sesión",
         "modal2fa": {
             "title": "Segundo factor de autenticación",

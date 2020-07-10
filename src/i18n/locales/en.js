@@ -51,6 +51,7 @@ export default {
         "orSignInWith": "Or sign in with"
     },
     "AuthForm": {
+        "errorOnLogin": "Your email or password is incorrect",
         "signIn": "Sign In",
         "modal2fa": {
             "title": "Two-Factor Authentication",

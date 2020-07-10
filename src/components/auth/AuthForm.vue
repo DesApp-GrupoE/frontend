@@ -100,10 +100,12 @@ export default {
 			this.modal2FaShow = true;
 		},
 
-		handleErrorRequest(error) {
+		handleErrorRequest(response) {
 			this.modalResponse.title = "Error"
-			if(error.response && error.response.data) {
-				this.modalResponse.msg = error.response.data.error;
+			if(response && response.status === 401) {
+				this.modalResponse.msg = this.$t('AuthForm.errorOnLogin');
+			} else if(response && response.data) {
+				this.modalResponse.msg = response.data.error;
 			} else {
 				// Set null para que muestre error generico
 				this.modalResponse.msg = null;
