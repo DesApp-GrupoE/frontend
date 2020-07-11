@@ -28,6 +28,17 @@ class ProductService {
       }          
       return api.post(`${process.env.VUE_APP_DESAPP_ROOT_API}/commerce/${commerceId}/product/`, json, config)
     }
+
+    createProductsWithCsv(commerceId, csvFile) {
+      let config = {
+        headers: {
+          'Authorization': localStorage.getItem('token'),
+          'Content-Type': 'multipart/form-data'
+        }
+      }
+
+      return api.post(`${process.env.VUE_APP_DESAPP_ROOT_API}/commerce/${commerceId}/product/csv`, csvFile, config)
+    }
 }
 
 export default new ProductService();

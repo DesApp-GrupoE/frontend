@@ -190,7 +190,22 @@ export default {
             "urlImage": "Url Image",
             "create": "Create",
             "success": "Success",
-            "productCreated": "Product created"
+            "productCreated": "Product created",
+            "productsCreated": "Products created",
+            "selectFile": "Select file csv",
+            "uploadMassive": "Upload Massive",
+            "upload": "Upload",
+            "csv": {
+                "title": "Upload massive of products",
+                "shouldSelectFile": "You should select file",
+                "containsColumns": "that contains the next columns:",
+                "idProduct": "Product's id to edit. Leave empty if is new product.",
+                "nameProduct": "Product's name (*)",
+                "brandProduct": "Product's brand (*)",
+                "priceProduct": "Product's price (*)",
+                "imgProduct": "Url link product's image (*)",
+                "fieldMandatory": "* Fields mandatories"
+            }
         }
     },
     "CreatePurchaseTurn": {

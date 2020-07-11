@@ -2,33 +2,36 @@
   <div>
     <div class="mb-2">
       <button class="btn btn-primary mr-2" v-on:click="modalCreateProduct">{{$t('CommerceComp.createProduct')}}</button>
+      <button class="btn btn-primary mr-2" v-on:click="showModalFileCsv">{{$t('CommerceComp.product.uploadMassive')}}</button>
     </div>
 
-    <div v-if="products.length">
-      <div class="row mb-1">
-        <div class="col-11">
-          <div class="row bold header-product d-flex justify-content-center text-center">
-            <div class="col-6">{{$t('CommerceComp.product.name')}}</div>
-            <div class="col-3">{{$t('CommerceComp.product.stock')}}</div>
-            <div class="col-3">{{$t('CommerceComp.product.price')}}</div>
-          </div>
-        </div>
-        <div class="col-1"></div>
-      </div>
-      <hr>
-
-      <div class="row mb-3" v-for="product in products" :key="product.id">
-        <div class="col-11">
-          <div class="row bold header-product d-flex justify-content-center text-center">
-            <div class="col-6">{{product.name}}</div>
-            <div class="col-3">{{product.stock}}</div>
-            <div class="col-3">{{product.price}}</div>
-          </div>
-        </div>
-        <div class="col-1">
-          <font-awesome-icon class="pointer" icon="times-circle" v-on:click="removeProduct(product.id)"/>
-        </div>
-      </div>
+    <div class="table-responsive" v-if="products.length">
+      <table class="table">
+        <thead>
+          <tr class="bold">
+            <th></th>
+            <th>Id</th>
+            <th>{{$t('CommerceComp.product.name')}}</th>
+            <th>{{$t('CommerceComp.product.stock')}}</th>
+            <th>{{$t('CommerceComp.product.price')}}</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="product in products" :key="product.id">
+            <td>
+              <img :src="product.img" class="img-product" :alt="$t('ShoppingCart.imgProductAlt')"/>
+            </td>
+            <td>{{product.id}}</td>
+            <td>{{product.name}}</td>
+            <td>{{product.stock}}</td>
+            <td>{{product.price}}</td>
+            <td>
+              <font-awesome-icon class="pointer" icon="times-circle" v-on:click="removeProduct(product.id)"/>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <b-modal v-model="modalProduct" :title="$t('CommerceComp.product.formTitle')" hide-footer>
@@ -66,8 +69,37 @@
       <h5 v-if="modalResponse.msg">{{modalResponse.msg}}</h5>
       <h5 v-else>{{$t('ShoppingCart.modalError.tryAgain')}}</h5>
     </b-modal>
+
+    <b-modal v-model="modalFileShow" :title="$t('CommerceComp.product.csv.title')" ok-only>
+      <p>
+        {{$t('CommerceComp.product.csv.shouldSelectFile')}} <span class="bold">.csv</span> {{$t('CommerceComp.product.csv.containsColumns')}}<br/>
+        <span class="bold">id</span>: {{$t('CommerceComp.product.csv.idProduct')}}<br/>
+        <span class="bold">name</span>: {{$t('CommerceComp.product.csv.nameProduct')}} <br/>
+        <span class="bold">brand</span>: {{$t('CommerceComp.product.csv.brandProduct')}} <br/>
+        <span class="bold">price</span>: {{$t('CommerceComp.product.csv.priceProduct')}} <br/>
+        <span class="bold">img</span>: {{$t('CommerceComp.product.csv.imgProduct')}} <br/>
+        {{$t('CommerceComp.product.csv.fieldMandatory')}}
+      </p>
+      <b-form-file v-model="file" :state="Boolean(file)" class="mr-3"
+          :placeholder="$t('CommerceComp.product.selectFile')" drop-placeholder="Drop file here..." >
+      </b-form-file>
+
+       <template v-slot:modal-footer>
+        <div class="w-100">
+          <button class="btn btn-primary float-right" type="button" v-on:click="submitFile()">{{$t('CommerceComp.product.upload')}}</button>
+        </div>
+      </template>
+    </b-modal>
   </div>
 </template>
+
+
+<style scoped>
+.img-product {
+	height: 80px;
+	width: 70px;
+}
+</style>
 
 <script>
 // import CommerceService from '@/service/user/CommerceService.js';
@@ -93,7 +125,9 @@ export default {
       modalResponse: {
 				title: null,
 				msg: null
-			},
+      },
+      modalFileShow: false,
+      file: null
     }
   },
   mounted() {
@@ -139,6 +173,51 @@ export default {
 				.then(() => {
 					this.modalResponseShow = true;
 				});
+    },
+
+    showModalFileCsv() {
+      this.modalFileShow = true;
+      this.file = null;
+    },
+
+    submitFile() {
+      let formData = new FormData();
+      formData.append('file', this.file);
+      ProductService.createProductsWithCsv(this.commerce.id, formData)
+        .then((response) => {
+          this.addProducts(response.data);
+          this.modalResponse.title = this.$t('CommerceComp.product.success');
+          this.modalResponse.msg = this.$t('CommerceComp.product.productsCreated');
+          this.modalResponseShow = true;
+          this.modalFileShow = false;
+        })
+        .catch(() => {
+          this.modalResponse.title = "Error"
+          this.modalResponse.msg = null;
+          this.modalResponseShow = true;
+          this.file = null;
+        });
+    },
+
+    addProducts(products) {
+      let existentProducts = products.filter(p => this.existsProduct(p));
+      let newProducts = products.filter(p => !this.existsProduct(p));
+
+      this.updateProducts(existentProducts);
+      this.products = this.products.concat(newProducts);
+      this.products.sort((p1, p2) => p1.id - p2.id);
+    },
+
+    existsProduct(product) {
+      return this.products.find(p => p.id === product.id) != undefined;
+    },
+
+    updateProducts(products) {
+      products.forEach(updatedProduct => {
+        let actualProduct = this.products.find(p => p.id === updatedProduct.id)
+        this.products.splice(this.products.indexOf(actualProduct), 1);
+        this.products.push(updatedProduct);
+      });
     }
   }
 }

@@ -190,7 +190,22 @@ export default {
             "urlImage": "Url de imagen",
             "create": "Crear",
             "success": "Exito",
-            "productCreated": "Producto creado"
+            "productCreated": "Producto creado",
+            "productsCreated": "Productos creados",
+            "selectFile": "Selecciona un archivo csv",
+            "uploadMassive": "Carga Masiva",
+            "upload": "Cargar",
+            "csv": {
+                "title": "Carga masiva de productos",
+                "shouldSelectFile": "Debe cargar un archivo",
+                "containsColumns": "que contanga las siguientes columnas:",
+                "idProduct": "Id de producto a editar. Dejar vacio si es un nuevo producto.",
+                "nameProduct": "Nombre del producto (*)",
+                "brandProduct": "Marca del producto (*)",
+                "priceProduct": "Precio en decimal del producto (*)",
+                "imgProduct": "Link de imagén del producto (*)",
+                "fieldMandatory": "* Campo obligatorio"
+            }
         }
     },
     "CreatePurchaseTurn": {
