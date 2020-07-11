@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     searchTurns() {
-      PurchaseTurnService.getTurns(this.commerceId)
+      PurchaseTurnService.getTurns(this.commerceId, this.formBusqueda.dateFrom, this.formBusqueda.dateTo)
         .then(response => {
           this.$emit("callback", response.data);
         })
