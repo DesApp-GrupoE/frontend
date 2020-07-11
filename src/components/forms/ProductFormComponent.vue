@@ -59,7 +59,7 @@
 
 <script>
 import ProductService from '@/service/product/ProductService.js'
-import PositionStackService from '@/service/positionStack/PositionStackService.js'
+import GoogleMapsService from '@/service/googleMaps/GoogleMapsService.js'
 
 export default {
     name: 'ProductForm',
@@ -79,14 +79,14 @@ export default {
       onSubmit(evt) {
         evt.preventDefault()
 
-        PositionStackService.findPosition(this.form.address)
+        GoogleMapsService.findPosition(this.form.address)
           .then(position => {
             return {
-                county: position.county,
-                region: position.region,
+                county: 'county',
+                region: 'region',
                 kilometers: this.form.kilometers,
-                latitude: position.latitude,
-                longitude: position.longitude
+                latitude: position.geometry.location.lat,
+                longitude: position.geometry.location.lng
               }
           })
           .catch(error => {

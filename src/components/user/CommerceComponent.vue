@@ -132,7 +132,7 @@
 
 <script>
 import CommerceService from '@/service/user/CommerceService.js';
-import PositionStackService from '@/service/positionStack/PositionStackService.js';
+import GoogleMapsService from '@/service/googleMaps/GoogleMapsService.js'
 
 export default {
   name: 'CommerceComponent',
@@ -187,10 +187,10 @@ export default {
       if(!this.isFormValid()) {
         return this.showModalValidationForm();
       }
-      PositionStackService.findPosition(this.formCommerce.address)
+      GoogleMapsService.findPosition(this.formCommerce.address)
         .then(position => {
-          this.formCommerce.latitude = position.latitude;
-          this.formCommerce.longitude = position.longitude;
+          this.formCommerce.latitude = position.geometry.location.lat;
+          this.formCommerce.longitude = position.geometry.location.lng;
         })
         .catch(() => {
           console.log("Sin conexión a Position Stack");
