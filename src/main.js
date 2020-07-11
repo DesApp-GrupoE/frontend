@@ -17,6 +17,7 @@ import '@/assets/css/fonts.css';
 import '@/assets/css/core.css';
 import VueCtkDateTimePicker from 'vue-ctk-date-time-picker';
 import 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css';
+import VuePaginate from 'vue-paginate'
 import api from "./service/api";
 
 // Install BootstrapVue
@@ -28,6 +29,7 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.use(require('vue-moment'));
 Vue.component('VueCtkDateTimePicker', VueCtkDateTimePicker);
+Vue.use(VuePaginate)
 
 Vue.config.productionTip = false
 Vue.prototype.$http = api;

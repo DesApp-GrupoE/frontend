@@ -9,3 +9,7 @@
 button.btn {
 	border-radius: 2px;
 }
+
+.page-item {
+	cursor: pointer;
+}
