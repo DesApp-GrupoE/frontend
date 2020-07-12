@@ -45,7 +45,34 @@ export default {
         "modalError": {
             "title": "Warning",
             "tryAgain": "An error has occurred. Please, try again"
-        }
+        },
+        "buy": "Buy"
+    },
+    "FinalizePurchase": {
+        "purchaseResume": "Purchase resume",
+        "commerce": "Commerce",
+        "deliveryType": "Delivery Type",
+        "dateTurn": "Date turn",
+        "total": "Total",
+        "selectTurn": "Select turn",
+        "finalizePurchase": "Finalize Purchase",
+        "null": "",
+        "ON_COMMERCE": "Take away",
+        "TO_ADDRESS": "Delivery",
+        "youShouldSelectDeliveryType": "You should select a delivery type. Do click in icon calendar.",
+        "purchaseMade": "Purchase made",
+        "doClickHereIfYouWantSeeYourPurchases": "Do click here if you want see your purchases"
+    },
+    "ModalTurnSelect": {
+        "title": "Delivery selection",
+        "ON_COMMERCE": "Take away",
+        "TO_ADDRESS": "Delivery",
+        "dateTurn": "Date turn",
+        "select": "Select",
+        "youShouldSelectDeliveryType": "You should select a delivery type",
+        "youShouldSelectAHour": "You should select a hour",
+        "address": "Address",
+        "insertAddress": "Insert address",
     },
     "AuthView": {
         "orSignInWith": "Or sign in with"
@@ -219,7 +246,7 @@ export default {
     "PurchaseTurnSearcher": {
         "dateFrom": "Date from",
         "dateTo": "Date to",
-        "searchTurns": "Search turns"
+        "searchTurns": "Search"
     },
     "TypeDelivery": {
         "ON_COMMERCE": "Take away",

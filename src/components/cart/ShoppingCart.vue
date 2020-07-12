@@ -21,35 +21,10 @@
 				<span class="bold">{{$t('ShoppingCart.total')}}</span>
 				<span>$ {{totalAmount}}</span>
 			</div>
-
-		<b-modal v-model="modalShow" :title="$t('Alert')" hide-footer>
-			<h4>{{$t('Necesita loguearse para poder finalizar la compra')}}</h4>
-		</b-modal>
-
-		<b-modal v-model="modalSendProcess" :title="$t('Proceso envío')" hide-footer ok-only>
-			<PurchaseTurnSearcher commerceId="1" @callback="setTurns"/>
-			<b-form>
-			<div class="d-flex justify-content-between flex-wrap pt-2">
-			</div>
 			
-
-			<div class="d-flex justify-content-center pt-2 pb-2">
-				<b-button type="submit" variant="primary">{{$t('Aceptar')}}</b-button>
-				<b-button type="submit" variant="primary">{{$t('Cancelar')}}</b-button>
+			<div class="d-flex justify-content-end" v-if="products.length > 0">
+				<b-button variant="primary" class="pull-right" v-on:click="goToFinalizePurchases">{{$t('ShoppingCart.buy')}}</b-button>
 			</div>
-		</b-form>
-		</b-modal>
-		
-		<input type="radio" id="dom" value="dom" v-model="pickedProperty">
-			<label for="dom"> Envío a domicilio</label>
-		<br>
-		<input type="radio" id="local" value="local" v-model="pickedProperty">
-			<label for="local"> Retira en local</label>
-		<br>
-		<span>Picked: {{ picked }}</span>
-		<br>
-		<br>
-		<button data-v-a225fc5a="" type="button" class="btn btn-primary" v-on:click="finalizePurchase">Finalizar compra</button>
 		</div>
 
 		<b-modal v-model="modalShow" :title="$t('ShoppingCart.modalUpdate.title')" hide-footer>
@@ -93,13 +68,11 @@ import CartRow from './CartRow.vue'
 
 import CartService from '@/service/cart/CartService.js';
 import AuthService from '@/service/auth/AuthService.js';
-import PurchaseTurnSearcher from '@/components/user/commerce/turns/PurchaseTurnSearcher.vue'
 
 export default {
 	name: 'ShoppingCart',
 	components: {
-		CartRow,
-    PurchaseTurnSearcher
+		CartRow
 	},
 	data() {
 		return {
@@ -174,28 +147,11 @@ export default {
 			window.location.reload();
 		},
 
-		finalizePurchase: function() {
-			if (AuthService.isLogged()) {
-				if (this.pickedProperty === "dom") {
-					this.modalSendProcess = true;
-				}
-				else {
-					//Ir a la pantalla de solicitud de turnos
-					this.modalShow = false;
-				}
+		goToFinalizePurchases() {
+			if(!AuthService.isLogged()) {
+				return alert('Debes iniciar sesión para realizar tu compra');
 			}
-			else {
-				this.modalShow = false;
-				//Levantar modal para indicar que tiene que estar logueado
-			}
-		},
-
-		setTurns: function(purchaseTurns) {
-			console.log(purchaseTurns);
-		},
-
-		searchTurns: function() {
-			console.log("test");
+			this.$router.push({ name: 'FinalizePurchase' })
 		}
 
 	}

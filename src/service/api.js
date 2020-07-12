@@ -3,7 +3,7 @@ import i18n from '@/i18n/i18n.js'
 
 const api = axios.create();
 
-api.defaults.timeout = 15000;
+// api.defaults.timeout = 15000;
 
 api.interceptors.response.use(
   response => {

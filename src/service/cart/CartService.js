@@ -67,6 +67,17 @@ class CartService {
                 return api.put(`${process.env.VUE_APP_DESAPP_ROOT_API}/cart/${keyCart}/product`, json);
             })
     }
+
+    generatePurchases() {
+        return this.getKeyCart()
+            .then(keyCart => {
+                return api.post(`${process.env.VUE_APP_DESAPP_ROOT_API}/cart/${keyCart}/generate-purchase`);
+            })   
+    }
+
+    removeCart() {
+        localStorage.removeItem(KEY_CART);
+    }
 }
 
 export default new CartService();

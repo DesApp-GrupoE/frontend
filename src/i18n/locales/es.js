@@ -45,7 +45,34 @@ export default {
         "modalError": {
             "title": "Advertencia",
             "tryAgain": "Ha ocurrido un error. Por favor, intente de nuevo"
-        }
+        },
+        "buy": "Comprar"
+    },
+    "FinalizePurchase": {
+        "purchaseResume": "Resumen de compra",
+        "commerce": "Comercio",
+        "deliveryType": "Tipo de envío",
+        "dateTurn": "Fecha de turno",
+        "total": "Total",
+        "selectTurn": "Seleccionar turno",
+        "finalizePurchase": "Finalizar compra",
+        "null": "",
+        "ON_COMMERCE": "Retiro por local",
+        "TO_ADDRESS": "Envío a domicilio",
+        "youShouldSelectDeliveryType": "Debes selecionar los tipos de entrega. Haz click en el icono de calendario.",
+        "purchaseMade": "Compra realizada",
+        "doClickHereIfYouWantSeeYourPurchases": "Haz click aquí si quieres ver tus compras"
+    },
+    "ModalTurnSelect": {
+        "title": "Selección de entrega",
+        "ON_COMMERCE": "Retiro por local",
+        "TO_ADDRESS": "Envío a domicilio",
+        "dateTurn": "Fecha del turno",
+        "select": "Seleccionar",
+        "youShouldSelectDeliveryType": "Debes seleccionar un tipo de entrega",
+        "youShouldSelectAHour": "Debes seleccionar un horario",
+        "address": "Dirección",
+        "insertAddress": "Ingrese una dirección"
     },
     "AuthView": {
         "orSignInWith": "Ó inicia sesión con"
@@ -219,7 +246,7 @@ export default {
     "PurchaseTurnSearcher": {
         "dateFrom": "Fecha desde",
         "dateTo": "Fecha hasta",
-        "searchTurns": "Buscar turnos"
+        "searchTurns": "Buscar"
     },
     "TypeDelivery": {
         "ON_COMMERCE": "Retiro por local",

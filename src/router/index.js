@@ -15,6 +15,7 @@ import PurchaseListComponent from '@/components/user/purchase/PurchaseListCompon
 import PurchaseDetailComponent from '@/components/user/purchase/PurchaseDetailComponent.vue';
 import SettingsComponent from '@/components/user/settings/SettingsComponent.vue';
 import OAuth2Redirect from '@/components/auth/oauth2/OAuth2Redirect.vue';
+import FinalizePurchase from '@/components/cart/FinalizePurchase.vue';
 
 Vue.use(VueRouter)
 
@@ -41,6 +42,14 @@ Vue.use(VueRouter)
     path: '/auth',
     name: 'AuthView',
     component: AuthView
+  },
+  {
+    path: '/finalize-purchase',
+    name: 'FinalizePurchase',
+    component: FinalizePurchase,
+    beforeEnter: (to, from, next) => {
+      checkToken(to, from, next)
+    }
   },
   {
     path: '/profile',

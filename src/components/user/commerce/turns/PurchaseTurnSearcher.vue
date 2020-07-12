@@ -29,7 +29,7 @@ export default {
     return {
       formBusqueda: {
         dateFrom: moment().format("DD/MM/YYYY"),
-        dateTo: moment().add(3, 'months').format("DD/MM/YYYY")
+        dateTo: moment().add(1, 'weeks').format("DD/MM/YYYY")
       }
     }
   },
