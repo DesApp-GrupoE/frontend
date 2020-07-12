@@ -1,11 +1,14 @@
 <template>
-  <div class="d-flex panel-home">
+  <div class="d-flex panel-home" style="min-height: 75vh;">
     <b-nav id="nav" vertical class="col-2 sidebar">
       <b-nav-item href="/profile/">
         <font-awesome-icon icon="user-circle" class="mr-1"/><span class="hide-xs">{{$t('ProfileView.profile')}}</span>
       </b-nav-item>
       <b-nav-item href="/profile/commerce">
         <font-awesome-icon icon="store" class="mr-1"/><span class="hide-xs">{{$t('ProfileView.commerce')}}</span>
+      </b-nav-item>
+      <b-nav-item href="/profile/purchase">
+        <font-awesome-icon icon="shopping-bag" class="mr-1"/><span class="hide-xs">Compras</span>
       </b-nav-item>
       <b-nav-item href="/profile/settings">
         <font-awesome-icon icon="cog" class="mr-1"/><span class="hide-xs">{{$t('ProfileView.settings')}}</span>

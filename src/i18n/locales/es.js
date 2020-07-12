@@ -227,5 +227,25 @@ export default {
         "address": "Dirección",
         "phone": "Teléfono",
         "sectors": "Rubros"
+    },
+    "PurchaseList": {
+        "purchases": "Compras",
+        "commerce": "Comercio",
+        "date": "Fecha",
+        "total": "Total",
+        "noPurchases": "No has realizado compras",
+        "seeDetail": "Ver detalle"
+    },
+    "PurchaseDetail": {
+        "purchaseDetail": "Detalle de compra",
+        "commerce": "Comercio",
+        "date": "Fecha",
+        "product": {
+            "name": "Nombre",
+            "price": "Precio",
+            "quantity": "Cantidad"
+        },
+        "total": "Total",
+        "back": "Volver"
     }
 }

@@ -227,5 +227,25 @@ export default {
         "address": "Address",
         "phone": "Phone",
         "sectors": "Sectors"
+    },
+    "PurchaseList": {
+        "purchases": "Purchases",
+        "commerce": "Commerce",
+        "date": "Date",
+        "total": "Total",
+        "noPurchases": "You didn't make purchases",
+        "seeDetail": "See detail"
+    },
+    "PurchaseDetail": {
+        "purchaseDetail": "Purchase detail",
+        "commerce": "Commerce",
+        "date": "Date",
+        "product": {
+            "name": "Name",
+            "price": "Price",
+            "quantity": "Quantity"
+        },
+        "total": "Total",
+        "back": "Back"
     }
 }

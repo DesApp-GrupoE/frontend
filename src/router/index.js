@@ -11,6 +11,8 @@ import CommerceComponent from '@/components/user/CommerceComponent.vue';
 import AbmCommerce from '@/components/user/commerce/AbmCommerce.vue';
 import AbmProducts from '@/components/user/commerce/AbmProducts.vue';
 import AbmPurchaseTurn from '@/components/user/commerce/turns/AbmPurchaseTurn.vue';
+import PurchaseListComponent from '@/components/user/purchase/PurchaseListComponent.vue';
+import PurchaseDetailComponent from '@/components/user/purchase/PurchaseDetailComponent.vue';
 import SettingsComponent from '@/components/user/settings/SettingsComponent.vue';
 import OAuth2Redirect from '@/components/auth/oauth2/OAuth2Redirect.vue';
 
@@ -75,6 +77,20 @@ Vue.use(VueRouter)
           }
         ]
       },
+      {
+        path: '/profile/purchase',
+        name: 'PurchaseListComponent',
+        component: PurchaseListComponent
+      },
+      {
+        path: '/profile/purchase/detail',
+        name: 'PurchaseDetailComponent',
+        component: PurchaseDetailComponent,
+          props: (route) => ({
+            ...route.params
+        })
+      },
+
       {
         path: '/profile/settings',
         name: 'SettingsComponent',
