@@ -1,7 +1,7 @@
 <template>
 	<div class="card card-product">
 		<div>
-			<!-- <label class="card-title-product pl-2 pr-2">Test</label> -->
+			<label class="card-title-product pl-2 pr-2">{{product.nameCommerce}}</label>
 			<div class="card-content">
 				<img :src="product.img" class="card-img-top card-img-product" :alt="$t('productCard.imgProductAlt')"/>
 			</div>
