@@ -6,13 +6,13 @@
           <font-awesome-icon icon="home" class="mr-1"/>
         </b-nav-item>
         <b-nav-item href="/profile/commerce/products" class="m-1">
-          <font-awesome-icon icon="shopping-basket" class="mr-1"/><span>Productos</span>
+          <font-awesome-icon icon="shopping-basket" class="mr-1"/><span>{{$t('CommerceComp.products')}}</span>
         </b-nav-item>
         <b-nav-item href="/profile/commerce/hours" class="m-1">
-          <font-awesome-icon icon="clock" class="mr-1"/><span>Horarios</span>
+          <font-awesome-icon icon="clock" class="mr-1"/><span>{{$t('CommerceComp.hours')}}</span>
         </b-nav-item>
         <b-nav-item href="/profile/commerce/turns" class="m-1">
-          <font-awesome-icon icon="calendar-alt" class="mr-1"/><span>Turnos</span>
+          <font-awesome-icon icon="calendar-alt" class="mr-1"/><span>{{$t('CommerceComp.turns')}}</span>
         </b-nav-item>
       </b-nav>
       

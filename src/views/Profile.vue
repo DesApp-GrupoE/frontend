@@ -8,7 +8,7 @@
         <font-awesome-icon icon="store" class="mr-1"/><span class="hide-xs">{{$t('ProfileView.commerce')}}</span>
       </b-nav-item>
       <b-nav-item href="/profile/purchase">
-        <font-awesome-icon icon="shopping-bag" class="mr-1"/><span class="hide-xs">Compras</span>
+        <font-awesome-icon icon="shopping-bag" class="mr-1"/><span class="hide-xs">{{$t('ProfileView.purchases')}}</span>
       </b-nav-item>
       <b-nav-item href="/profile/settings">
         <font-awesome-icon icon="cog" class="mr-1"/><span class="hide-xs">{{$t('ProfileView.settings')}}</span>

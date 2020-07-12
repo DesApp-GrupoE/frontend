@@ -89,6 +89,7 @@ export default {
     "ProfileView": {
         "profile": "Perfil",
         "commerce": "Comercio",
+        "purchases": "Compras",
         "settings": "Configuraciones"
     },
     "ProfileComp": {
@@ -142,6 +143,9 @@ export default {
         },
     },
     "CommerceComp": {
+        "products": "Productos",
+        "hours": "Horarios",
+        "turns": "Turnos",
         "withoutCommerce": "No tienes un comercio",
         "doYouWantCreateACommerce": "¡Haz click aquí, si quieres comenzar a vender!",
         "commerceData": "Datos del comercio",
@@ -179,7 +183,6 @@ export default {
             "hours": "Debes cargar al menos un horario de atención.",
             "deliveryUp": "Debes completar el campo de entrega hasta"
         },
-        "products": "Productos",
         "createProduct": "Crear producto",
         "product": {
             "name": "Nombre",

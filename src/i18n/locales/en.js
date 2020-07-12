@@ -89,6 +89,7 @@ export default {
     "ProfileView": {
         "profile": "Profile",
         "commerce": "Commerce",
+        "purchases": "Purchases",
         "settings": "Settings"
     },
     "ProfileComp": {
@@ -142,6 +143,9 @@ export default {
         },
     },
     "CommerceComp": {
+        "products": "Products",
+        "hours": "Hours",
+        "turns": "Turns",
         "withoutCommerce": "You have not commerce",
         "doYouWantCreateACommerce": "If do you want create a commerce, do click here!",
         "commerceData": "Commerce data",
@@ -179,7 +183,6 @@ export default {
             "hours": "You must load at least one attention hour.",
             "deliveryUp": "You must complete delivery up"
         },
-        "products": "Products",
         "createProduct": "Create Product",
         "product": {
             "name": "Name",
