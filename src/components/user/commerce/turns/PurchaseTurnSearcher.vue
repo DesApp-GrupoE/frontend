@@ -23,7 +23,8 @@ import moment from 'moment'
 export default {
   name: 'PurchaseTurnSearcher',
   props: {
-    commerceId: Number
+    commerceId: Number,
+    onlyFree: Boolean
   },
   data() {
     return {
@@ -35,7 +36,25 @@ export default {
   },
   methods: {
     searchTurns() {
+      if(this.onlyFree) {
+        this.getFreeTurns();
+      } else {
+        this.getAllTurns();
+      }
+    },
+
+    getAllTurns() {
       PurchaseTurnService.getTurns(this.commerceId, this.formBusqueda.dateFrom, this.formBusqueda.dateTo)
+        .then(response => {
+          this.$emit("callback", response.data);
+        })
+        .catch(() => {
+          this.$emit("callback", []);
+        })
+    },
+
+    getFreeTurns() {
+      PurchaseTurnService.getFreeTurns(this.commerceId, this.formBusqueda.dateFrom, this.formBusqueda.dateTo)
         .then(response => {
           this.$emit("callback", response.data);
         })

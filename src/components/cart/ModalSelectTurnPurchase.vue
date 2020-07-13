@@ -6,7 +6,7 @@
         <input class="mr-2" type="radio" name="type-turn" v-model="deliveryType" value="TO_ADDRESS"> {{$t('ModalTurnSelect.TO_ADDRESS')}}
       </div>
       <div class="mt-2" v-if="deliveryType === 'ON_COMMERCE'">
-        <PurchaseTurnSearcher :commerceId="commerceId" @callback="setTurns"/>
+        <PurchaseTurnSearcher :commerceId="commerceId" @callback="setTurns" v-bind:onlyFree="true"/>
         <div class="table-responsive" v-if="turns.length > 0">
           <table class="table text-center">
             <thead>
