@@ -1,9 +1,12 @@
 <template>
 	<div>
 		<div class="col-md-6 col-12 d-flex align-items-start">
-			<img :src="product.img" class="img-product" :alt="$t('ShoppingCart.imgProductAlt')"/>
-			{{product.name}}<br/>
-			{{product.brand}}
+			<img :src="product.img" class="img-product ml-1" :alt="$t('ShoppingCart.imgProductAlt')"/>
+			<p class="ml-2">
+				<span class="bold">{{product.nameCommerce}}</span><br/>
+				{{product.name}}<br/>
+				{{product.brand}}
+			</p>
 		</div>
 		<div class="col-md-6 col-12 product-detail-xs">
 			<div class="row d-block d-md-none">

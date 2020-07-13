@@ -5,6 +5,7 @@
       <table class="table">
         <thead>
           <tr class="bold">
+            <th>#</th>
             <th>{{$t('PurchaseList.commerce')}}</th>
             <th>{{$t('PurchaseList.date')}}</th>
             <th>{{$t('PurchaseList.total')}}</th>
@@ -13,6 +14,7 @@
         </thead>
         <tbody>
           <tr v-for="purchase in purchases" :key="purchase.id">
+            <td>{{purchase.id}}</td>
             <td>{{purchase.nameCommerce}}</td>
             <td>{{purchase.date}}</td>
             <td>$ {{calculateTotal(purchase.products)}}</td>

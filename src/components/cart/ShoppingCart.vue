@@ -92,7 +92,7 @@ export default {
 	mounted() { 
 		CartService.getShoppingCart()
 		.then(response => {
-			this.products = response.data.cartProducts;
+			this.products = response.data;
 		})
 		.catch(() => {
 			this.modalErrorShow = true;
