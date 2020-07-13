@@ -277,5 +277,19 @@ export default {
         },
         "total": "Total",
         "back": "Volver"
+    },
+    "AbmPurchaseTurn": {
+        "date": "Fecha",
+        "deliveryType": "Tipo de entrega",
+        "free": "Libre",
+        "ON_COMMERCE": "Retiro por local",
+        "TO_ADDRESS": "Envío a domicilio",
+        "yes": "Si",
+        "no": "No",
+        "delete": {
+            "true": "Borrar turno",
+            "false": "No puedes borrar el turno si no esta libre"
+        },
+        "deleted": "Turno borrado"
     }
 }

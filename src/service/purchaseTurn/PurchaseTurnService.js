@@ -33,6 +33,15 @@ class PurchaseServiceTurn {
         }
       return api.post(`${process.env.VUE_APP_DESAPP_ROOT_API}/purchase-turn`, json, config);
     }
+
+    deleteTurn(turnId) {
+      let config = {
+        headers: {
+            'Authorization': localStorage.getItem('token'),
+          }
+        }
+      return api.delete(`${process.env.VUE_APP_DESAPP_ROOT_API}/purchase-turn/${turnId}`, config);
+    }
 }
 
 export default new PurchaseServiceTurn();

@@ -13,3 +13,7 @@ button.btn {
 .page-item {
 	cursor: pointer;
 }
+
+.table > tbody > tr > td {
+  vertical-align: middle;
+}

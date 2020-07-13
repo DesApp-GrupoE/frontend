@@ -277,5 +277,19 @@ export default {
         },
         "total": "Total",
         "back": "Back"
+    },
+    "AbmPurchaseTurn": {
+        "date": "Date",
+        "deliveryType": "DeliveryType",
+        "free": "Free",
+        "ON_COMMERCE": "Take away",
+        "TO_ADDRESS": "Delivery",
+        "yes": "Yes",
+        "no": "No",
+        "delete": {
+            "true": "Delete turn",
+            "false": "You can't delete turn if isn't free"
+        },
+        "deleted": "Turn deleted"
     }
 }
