@@ -63,7 +63,7 @@ export default {
   methods: {
     calculateTotal(products) {
       return products.reduce((total, product) => {
-        return total + product.quantity + product.price;
+        return total + (product.quantity * product.price);
       }, 0)
     },
 
