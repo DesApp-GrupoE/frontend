@@ -19,7 +19,7 @@
             <td>{{purchase.date}}</td>
             <td>$ {{calculateTotal(purchase.products)}}</td>
             <td>
-              <b-button type="button" variant="success" @click="goToDetail(purchase.id)" :title="$t('PurchaseList.seeDetail')">
+              <b-button type="button" variant="success" @click="seeDetail(purchase.id)" :title="$t('PurchaseList.seeDetail')">
                 <font-awesome-icon icon="eye"/>
               </b-button>
             </td>
@@ -30,6 +30,10 @@
     <div v-else>
       <h3>{{$t('PurchaseList.noPurchases')}}</h3>
     </div>
+
+    <b-modal v-model="showPurchaseDetail" ok-only size="lg">
+      <PurchaseDetailComponent :purchase="purchaseSelected"/>
+    </b-modal>
   </div>
 </template>
 
@@ -40,13 +44,20 @@
 </style>
 
 <script>
+import PurchaseDetailComponent from '@/components/user/purchase/PurchaseDetailComponent.vue';
+
 import ProductService from '@/service/purchase/PurchaseService.js';
 
 export default {
   name: 'PurchaseListComponent',
+  components: {
+    PurchaseDetailComponent
+  },
   data() {
     return {
-      purchases: []
+      purchases: [],
+      purchaseSelected: null,
+      showPurchaseDetail: false
     }
   },
   mounted() {
@@ -65,14 +76,10 @@ export default {
       }, 0)
     },
 
-    goToDetail(purchaseId) {
+    seeDetail(purchaseId) {
       let purchase = this.purchases.find(p => p.id === purchaseId);
-      this.$router.push({
-            name: 'PurchaseDetailComponent',
-            params: {
-                purchase: purchase
-            }
-        })
+      this.purchaseSelected = purchase;
+      this.showPurchaseDetail = true;
     }
   }
 }

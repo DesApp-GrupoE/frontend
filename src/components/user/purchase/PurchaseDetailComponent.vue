@@ -30,9 +30,6 @@
         <span>{{$t('PurchaseDetail.total')}}: $ {{this.calculateTotal()}}</span>
       </div>
     </div>
-    <b-button variant="primary" v-on:click="returnToList" v-if="showBtnBack">
-      {{$t('PurchaseDetail.back')}}
-    </b-button>
   </div>
 </template>
 
@@ -47,11 +44,7 @@
 export default {
   name: 'PurchaseDetailComponent',
   props: {
-    purchase: Object,
-    showBtnBack:  {
-      default: true,
-      type: Boolean
-    }
+    purchase: Object
   },
   mounted() {
     if(!this.purchase) {
@@ -59,10 +52,6 @@ export default {
     }
   },
   methods: {
-    returnToList() {
-      this.$router.push({ name: 'PurchaseListComponent'})
-    },
-    
     calculateTotal() {
       return this.purchase.products.reduce((total, product) => {
         return total + product.quantity + product.price;

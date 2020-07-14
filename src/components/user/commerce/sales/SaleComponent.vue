@@ -29,7 +29,7 @@
     </div>
 
     <b-modal v-model="cartSaleDetailShow" ok-only size="lg">
-      <PurchaseDetailComponent :purchase="saleSelected" v-bind:showBtnBack="false"/>
+      <PurchaseDetailComponent :purchase="saleSelected"/>
     </b-modal>
   </div>
 </template>
