@@ -116,7 +116,7 @@ export default {
           return alert(this.$t('ModalTurnSelect.insertAddress'));
         }
         if(!this.canDoDelivery) {
-          let msg = `${this.t('ModalTurnSelect.thisCommerceOnlyDoesDeliveryAt')} ${this.commerce.deliveryUp} ${this.t('ModalTurnSelect.kmAndYourAddressIsOutOfIt')}`
+          let msg = `${this.$t('ModalTurnSelect.thisCommerceOnlyDoesDeliveryAt')} ${this.commerce.deliveryUp} ${this.$t('ModalTurnSelect.kmAndYourAddressIsOutOfIt')}`
           return alert(msg);
         }
         purchase.address = this.address;
