@@ -14,6 +14,9 @@
         <b-nav-item href="/profile/commerce/turns" class="m-1">
           <font-awesome-icon icon="calendar-alt" class="mr-1"/><span>{{$t('CommerceComp.turns')}}</span>
         </b-nav-item>
+        <b-nav-item href="/profile/commerce/sales" class="m-1">
+          <font-awesome-icon icon="cash-register" class="mr-1"/><span>{{$t('CommerceComp.sales')}}</span>
+        </b-nav-item>
       </b-nav>
       
       <div class="p-2">
@@ -22,7 +25,7 @@
       
     </div>
 
-    <div v-else>
+    <div v-else class="col-12">
       <div class="mb-2">
         {{$t('CommerceComp.withoutCommerce')}}. <button class="btn-link" v-on:click="showFormCreateCommerce">{{$t('CommerceComp.doYouWantCreateACommerce')}}</button>
       </div>

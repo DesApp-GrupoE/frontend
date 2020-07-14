@@ -16,6 +16,7 @@ import PurchaseDetailComponent from '@/components/user/purchase/PurchaseDetailCo
 import SettingsComponent from '@/components/user/settings/SettingsComponent.vue';
 import OAuth2Redirect from '@/components/auth/oauth2/OAuth2Redirect.vue';
 import FinalizePurchase from '@/components/cart/FinalizePurchase.vue';
+import SaleComponent from '@/components/user/commerce/sales/SaleComponent.vue';
 
 Vue.use(VueRouter)
 
@@ -83,6 +84,11 @@ Vue.use(VueRouter)
             path: '/profile/commerce/turns',
             name: 'AbmPurchaseTurn',
             component: AbmPurchaseTurn
+          },
+          {
+            path: '/profile/commerce/sales',
+            name: 'SaleComponent',
+            component: SaleComponent
           }
         ]
       },
@@ -99,7 +105,6 @@ Vue.use(VueRouter)
             ...route.params
         })
       },
-
       {
         path: '/profile/settings',
         name: 'SettingsComponent',

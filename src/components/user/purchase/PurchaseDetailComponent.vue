@@ -30,7 +30,9 @@
         <span>{{$t('PurchaseDetail.total')}}: $ {{this.calculateTotal()}}</span>
       </div>
     </div>
-    <b-button variant="primary" v-on:click="returnToList">{{$t('PurchaseDetail.back')}}</b-button>
+    <b-button variant="primary" v-on:click="returnToList" v-if="showBtnBack">
+      {{$t('PurchaseDetail.back')}}
+    </b-button>
   </div>
 </template>
 
@@ -45,7 +47,11 @@
 export default {
   name: 'PurchaseDetailComponent',
   props: {
-    purchase: Object
+    purchase: Object,
+    showBtnBack:  {
+      default: true,
+      type: Boolean
+    }
   },
   mounted() {
     if(!this.purchase) {

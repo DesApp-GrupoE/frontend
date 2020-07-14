@@ -25,6 +25,15 @@ class CommerceService {
         }
         return api.post(`${process.env.VUE_APP_DESAPP_ROOT_API}/user/${userId}/commerce`, json, config)
     }
+
+    getSales() {
+        let config = {
+            headers: {
+                'Authorization': localStorage.getItem('token'),
+            }
+        }
+        return api.get(`${process.env.VUE_APP_DESAPP_ROOT_API}/commerce/sales`, config)
+    }
 }
 
 export default new CommerceService();

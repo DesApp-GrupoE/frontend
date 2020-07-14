@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faShoppingCart, faTimesCircle, faGlobeAmericas, faHome, faCog, faShoppingBag,
-  faUserCircle, faEye, faBars, faStore, faShoppingBasket, faClock, faCalendarAlt
+  faUserCircle, faEye, faBars, faStore, faShoppingBasket, faClock, faCalendarAlt, faCashRegister
 } from '@fortawesome/free-solid-svg-icons'
 import { faGoogle } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -24,7 +24,7 @@ import api from "./service/api";
 Vue.use(BootstrapVue)
 // Install Font-Awesome
 library.add(faShoppingCart, faTimesCircle, faGlobeAmericas, faUserCircle, faCog, faShoppingBag,
-  faEye, faBars, faStore, faShoppingBasket, faClock, faHome, faGoogle, faCalendarAlt)
+  faEye, faBars, faStore, faShoppingBasket, faClock, faHome, faGoogle, faCalendarAlt, faCashRegister)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.use(require('vue-moment'));

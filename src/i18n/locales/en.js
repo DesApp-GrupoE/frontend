@@ -173,6 +173,7 @@ export default {
         "products": "Products",
         "hours": "Hours",
         "turns": "Turns",
+        "sales": "Sales",
         "withoutCommerce": "You have not commerce",
         "doYouWantCreateACommerce": "If do you want create a commerce, do click here!",
         "commerceData": "Commerce data",
@@ -261,6 +262,7 @@ export default {
     "PurchaseList": {
         "purchases": "Purchases",
         "commerce": "Commerce",
+        "client": "Client",
         "date": "Date",
         "total": "Total",
         "noPurchases": "You didn't make purchases",
