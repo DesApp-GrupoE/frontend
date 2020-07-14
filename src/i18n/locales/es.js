@@ -72,7 +72,11 @@ export default {
         "youShouldSelectDeliveryType": "Debes seleccionar un tipo de entrega",
         "youShouldSelectAHour": "Debes seleccionar un horario",
         "address": "Dirección",
-        "insertAddress": "Ingrese una dirección"
+        "insertAddress": "Ingrese una dirección",
+        "thisCommerceDoesntDoDelivery": "Este comercio no realiza envíos a domicilio",
+        "thisCommerceOnlyDoesDeliveryAt": "El comercio solo realiza envíos en un radio de",
+        "kmAndYourAddressIsOutOfIt": "km y su dirección esta por fuera del mismo"
+
     },
     "AuthView": {
         "orSignInWith": "Ó inicia sesión con"

@@ -73,6 +73,9 @@ export default {
         "youShouldSelectAHour": "You should select a hour",
         "address": "Address",
         "insertAddress": "Insert address",
+        "thisCommerceDoesntDoDelivery": "This commerce doesn't do delivery",
+        "thisCommerceOnlyDoesDeliveryAt": "This commerce only does delivery at radio of",
+        "kmAndYourAddressIsOutOfIt": "km and your address is out of it"
     },
     "AuthView": {
         "orSignInWith": "Or sign in with"

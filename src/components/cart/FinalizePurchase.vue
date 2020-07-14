@@ -14,7 +14,10 @@
         </thead>
         <tbody>
           <tr v-for="purchase in purchases" :key="purchase.id">
-            <td>{{purchase.nameCommerce}}</td>
+            <td>
+              <span class="bold">{{purchase.nameCommerce}}</span><br/>
+              {{getAddressCommerce(purchase.commerceId)}}
+            </td>
             <td>{{$t('FinalizePurchase.' + purchase.deliveryType)}}</td>
             <td>{{purchase.turnHour}}</td>
             <td>$ {{calculateTotal(purchase.products)}}</td>
@@ -35,7 +38,7 @@
       <b-button type="button" variant="primary" class="pull-right" v-on:click="finalizePurchase">{{$t('FinalizePurchase.finalizePurchase')}}</b-button>
     </div>
 
-    <ModalSelectTurnPurchase ref="modalTurn" :commerceId="commerceId" @select="loadDataTurn" />
+    <ModalSelectTurnPurchase ref="modalTurn" :commerceId="commerceId" @select="loadDataTurn" :commerce="commerceSelected"/>
 
     <!-- Modal response -->
     <b-modal v-model="modalResponseShow" :title="modalResponse.title" @hidden="cerrarYVolverAHome(modalResponse.ok)">
@@ -77,7 +80,9 @@ export default {
   data() {
     return {
       purchases: [],
+      commerces: [],
       commerceId: 0,
+      commerceSelected: {},
       modalResponseShow: false,
       modalResponse: {
         title: '',
@@ -88,7 +93,8 @@ export default {
   mounted() {
     CartService.generatePurchases()
       .then(response => {
-        this.purchases = response.data;
+        this.purchases = response.data.purchases;
+        this.commerces = response.data.commerces;
         if(this.purchases.length < 1) {
           this.$router.push({ name: 'Home' });
         }
@@ -106,6 +112,7 @@ export default {
 
     showModalTurn(commerceId) {
       this.commerceId = commerceId;
+      this.commerceSelected = this.commerces.find(c => c.id == commerceId);
       this.$refs.modalTurn.showModal()
     },
 
@@ -165,6 +172,11 @@ export default {
         this.$router.push({ name: 'Home' });
       }
       this.modalResponseShow = false;
+    },
+
+    getAddressCommerce(commerceId) {
+      let commerce = this.commerces.find(c => c.id === commerceId);
+      return commerce.address;
     }
   }
 }
